@@ -1,0 +1,37 @@
+{
+  "posts": [
+    {
+      "id": "post-001",
+      "title": "Spring Schedule Released",
+      "type": "announcement",
+      "content": "Our spring program schedule is now available! Check out new clinic times, league options, and special events planned for March through May. We've added more evening options and a brand new Wine & Tennis social series.",
+      "videoUrl": "",
+      "affiliateLinks": [],
+      "author": "Marcy Borr",
+      "visible": true,
+      "createdAt": "2025-01-28T10:00:00Z"
+    },
+    {
+      "id": "post-002",
+      "title": "Court Resurfacing Complete",
+      "type": "news",
+      "content": "Great news! Courts 3 and 4 have been freshly resurfaced and are ready for play. Enjoy the improved bounce and grip! The new surface is a premium cushioned acrylic that's easier on joints.",
+      "videoUrl": "",
+      "affiliateLinks": [],
+      "author": "Marcy Borr",
+      "visible": true,
+      "createdAt": "2025-01-25T10:00:00Z"
+    },
+    {
+      "id": "post-003",
+      "title": "Winter Warm-Up Routine",
+      "type": "tip",
+      "content": "Cold muscles need extra care! Here's Coach Lexi's favorite 10-minute warm-up routine to prevent injuries during winter play:\n\n1. Light jog around the court (2 min)\n2. Arm circles and shoulder rolls (1 min)\n3. Leg swings front-to-back (1 min each leg)\n4. Lateral lunges (1 min)\n5. Torso rotations (1 min)\n6. Mini rallies from service line (3 min)",
+      "videoUrl": "",
+      "affiliateLinks": [],
+      "author": "Lexi Borr",
+      "visible": true,
+      "createdAt": "2025-01-22T10:00:00Z"
+    }
+  ]
+}

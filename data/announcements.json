@@ -1,0 +1,14 @@
+{
+  "announcements": [
+    {
+      "id": "ann-001",
+      "title": "Spring Registration Now Open!",
+      "content": "Sign up for our March events before they fill up.",
+      "link": "/events.html",
+      "linkText": "View Events",
+      "type": "banner",
+      "visible": true,
+      "createdAt": "2025-01-28T10:00:00Z"
+    }
+  ]
+}

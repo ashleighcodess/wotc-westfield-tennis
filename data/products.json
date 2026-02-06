@@ -1,0 +1,82 @@
+{
+  "products": [
+    {
+      "id": "prod-001",
+      "title": "WOTC Performance Tee",
+      "category": "apparel",
+      "description": "Moisture-wicking fabric with embroidered logo. Available in forest green and white.",
+      "price": 35,
+      "salePrice": null,
+      "image": "",
+      "stripeLink": "",
+      "featured": true,
+      "visible": true,
+      "createdAt": "2025-01-15T10:00:00Z"
+    },
+    {
+      "id": "prod-002",
+      "title": "WOTC Tennis Skirt",
+      "category": "apparel",
+      "description": "Flattering A-line cut with built-in shorts. Pockets for balls. White with gold accent.",
+      "price": 48,
+      "salePrice": null,
+      "image": "",
+      "stripeLink": "",
+      "featured": false,
+      "visible": true,
+      "createdAt": "2025-01-15T10:00:00Z"
+    },
+    {
+      "id": "prod-003",
+      "title": "WOTC Zip-Up Jacket",
+      "category": "apparel",
+      "description": "Lightweight warm-up jacket perfect for cool mornings. Full zip with stand collar.",
+      "price": 65,
+      "salePrice": null,
+      "image": "",
+      "stripeLink": "",
+      "featured": false,
+      "visible": true,
+      "createdAt": "2025-01-15T10:00:00Z"
+    },
+    {
+      "id": "prod-004",
+      "title": "Penn Championship Balls",
+      "category": "equipment",
+      "description": "Extra duty felt for all court surfaces. 3-pack.",
+      "price": 4.99,
+      "salePrice": null,
+      "image": "",
+      "stripeLink": "",
+      "featured": false,
+      "visible": true,
+      "createdAt": "2025-01-15T10:00:00Z"
+    },
+    {
+      "id": "prod-005",
+      "title": "Wilson Team 6-Pack Bag",
+      "category": "accessories",
+      "description": "Room for 6 rackets plus gear. Multiple pockets.",
+      "price": 79,
+      "salePrice": 59,
+      "image": "",
+      "stripeLink": "",
+      "featured": false,
+      "visible": true,
+      "createdAt": "2025-01-15T10:00:00Z"
+    },
+    {
+      "id": "prod-006",
+      "title": "Tourna Grip Original",
+      "category": "accessories",
+      "description": "Dry feel overgrip. 10-pack for lasting comfort.",
+      "price": 12.99,
+      "salePrice": null,
+      "image": "",
+      "stripeLink": "",
+      "featured": false,
+      "visible": true,
+      "createdAt": "2025-01-15T10:00:00Z"
+    }
+  ]
+}

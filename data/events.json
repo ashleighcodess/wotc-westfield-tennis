@@ -1,0 +1,64 @@
+{
+  "events": [
+    {
+      "id": "evt-001",
+      "title": "Spring Tennis Mixer & Social",
+      "date": "2025-03-15",
+      "time": "10:00 AM - 2:00 PM",
+      "description": "Kick off the spring season with our biggest social event! Mixed doubles round-robin, brunch, and prizes. All skill levels welcome.",
+      "price": 45,
+      "capacity": 48,
+      "registered": 24,
+      "category": "social",
+      "stripeLink": "",
+      "featured": true,
+      "visible": true,
+      "createdAt": "2025-01-15T10:00:00Z"
+    },
+    {
+      "id": "evt-002",
+      "title": "Serve & Volley Clinic",
+      "date": "2025-03-08",
+      "time": "9:00 AM - 11:00 AM",
+      "description": "Master the art of serve and volley with Coach Lexi. Focus on technique, footwork, and net game strategy.",
+      "price": 35,
+      "capacity": 12,
+      "registered": 4,
+      "category": "clinic",
+      "stripeLink": "",
+      "featured": false,
+      "visible": true,
+      "createdAt": "2025-01-14T10:00:00Z"
+    },
+    {
+      "id": "evt-003",
+      "title": "Women's Doubles Tournament",
+      "date": "2025-03-22",
+      "time": "8:00 AM - 4:00 PM",
+      "description": "Competitive doubles tournament for 3.5+ level players. Prizes for winners and finalists. Lunch included.",
+      "price": 60,
+      "capacity": 24,
+      "registered": 12,
+      "category": "tournament",
+      "stripeLink": "",
+      "featured": false,
+      "visible": true,
+      "createdAt": "2025-01-13T10:00:00Z"
+    },
+    {
+      "id": "evt-004",
+      "title": "Wine & Tennis Night",
+      "date": "2025-03-29",
+      "time": "6:00 PM - 9:00 PM",
+      "description": "An evening of casual tennis, wine tasting, and socializing. No partner needed - we'll match you up!",
+      "price": 30,
+      "capacity": 32,
+      "registered": 12,
+      "category": "social",
+      "stripeLink": "",
+      "featured": false,
+      "visible": true,
+      "createdAt": "2025-01-12T10:00:00Z"
+    }
+  ]
+}

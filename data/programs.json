@@ -1,0 +1,74 @@
+{
+  "programs": [
+    {
+      "id": "prg-001",
+      "title": "Foundations Clinic",
+      "level": "beginner",
+      "schedule": "Tuesdays & Thursdays",
+      "time": "9:00 AM - 10:30 AM",
+      "description": "Build your tennis fundamentals with our beginner-friendly clinic. Learn proper grip, stance, and basic strokes.",
+      "price": 35,
+      "priceType": "per session",
+      "maxPlayers": 8,
+      "stripeLink": "",
+      "visible": true,
+      "createdAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": "prg-002",
+      "title": "Stroke Development",
+      "level": "intermediate",
+      "schedule": "Mondays & Wednesdays",
+      "time": "10:00 AM - 11:30 AM",
+      "description": "Refine your technique and develop consistency. Focus on groundstrokes, volleys, and movement.",
+      "price": 45,
+      "priceType": "per session",
+      "maxPlayers": 6,
+      "stripeLink": "",
+      "visible": true,
+      "createdAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": "prg-003",
+      "title": "Competitive Drills",
+      "level": "advanced",
+      "schedule": "Fridays",
+      "time": "6:00 PM - 8:00 PM",
+      "description": "Match-play intensity training for experienced players. Point construction, tactics, and pressure situations.",
+      "price": 55,
+      "priceType": "per session",
+      "maxPlayers": 6,
+      "stripeLink": "",
+      "visible": true,
+      "createdAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": "prg-004",
+      "title": "Private Lesson",
+      "level": "all",
+      "schedule": "By Appointment",
+      "time": "60 minutes",
+      "description": "One-on-one instruction tailored to your specific goals. Video analysis and personalized feedback included.",
+      "price": 85,
+      "priceType": "per session",
+      "maxPlayers": 1,
+      "stripeLink": "",
+      "visible": true,
+      "createdAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": "prg-005",
+      "title": "Beginner 4-Week Course",
+      "level": "beginner",
+      "schedule": "Saturdays",
+      "time": "9:00 AM - 10:30 AM",
+      "description": "Complete introduction to tennis for adults. Learn fundamentals in a supportive, fun environment.",
+      "price": 160,
+      "priceType": "4-week course",
+      "maxPlayers": 6,
+      "stripeLink": "",
+      "visible": true,
+      "createdAt": "2025-01-10T10:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Women of the Court</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d5a4a;
+            --primary-light: #3d7a64;
+            --primary-dark: #1e3d32;
+            --accent: #c9a87c;
+            --accent-light: #e8d4b8;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --green: #10b981;
+            --green-light: #d1fae5;
+            --red: #ef4444;
+            --red-light: #fee2e2;
+            --blue: #3b82f6;
+            --blue-light: #dbeafe;
+            --yellow: #f59e0b;
+            --yellow-light: #fef3c7;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 24px 0;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            padding: 0 24px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .sidebar-logo h1 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+        .sidebar-logo span { font-size: 12px; color: var(--gray-400); }
+
+        .sidebar-nav { list-style: none; }
+        .sidebar-nav li { margin-bottom: 4px; }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-nav a:hover { background: rgba(255, 255, 255, 0.05); color: var(--white); }
+        .sidebar-nav a.active { background: rgba(255, 255, 255, 0.1); color: var(--white); border-left-color: var(--accent); }
+        .sidebar-nav svg { width: 20px; height: 20px; }
+
+        .sidebar-section {
+            padding: 16px 24px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-500);
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--gray-900);
+        }
+
+        .sidebar-footer a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .sidebar-footer a:hover { color: var(--white); }
+        .sidebar-footer svg { width: 20px; height: 20px; }
+
+        .main { margin-left: 260px; min-height: 100vh; }
+
+        .topbar {
+            background: var(--white);
+            padding: 16px 32px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .topbar-title h2 { font-size: 20px; font-weight: 600; color: var(--gray-900); }
+        .topbar-title p { font-size: 13px; color: var(--gray-500); margin-top: 2px; }
+        .topbar-actions { display: flex; align-items: center; gap: 12px; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .btn svg { width: 18px; height: 18px; }
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-primary:hover { background: var(--primary-light); }
+        .btn-secondary { background: var(--gray-100); color: var(--gray-700); }
+        .btn-secondary:hover { background: var(--gray-200); }
+        .btn-danger { background: var(--red); color: var(--white); }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-sm { padding: 6px 12px; font-size: 13px; }
+
+        .content { padding: 32px; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 32px; }
+
+        .stat-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .stat-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+
+        .stat-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-card-icon svg { width: 20px; height: 20px; }
+        .stat-card-icon.green { background: var(--green-light); color: var(--green); }
+        .stat-card-icon.blue { background: var(--blue-light); color: var(--blue); }
+        .stat-card-icon.yellow { background: var(--yellow-light); color: var(--yellow); }
+        .stat-card-icon.primary { background: rgba(45, 90, 74, 0.1); color: var(--primary); }
+
+        .stat-card-value { font-size: 28px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+        .stat-card-label { font-size: 13px; color: var(--gray-500); }
+
+        .section { display: none; }
+        .section.active { display: block; }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            margin-bottom: 24px;
+        }
+
+        .card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h3 { font-size: 16px; font-weight: 600; color: var(--gray-900); }
+        .card-body { padding: 24px; }
+
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th, .data-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--gray-100); }
+        .data-table th { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-500); background: var(--gray-50); }
+        .data-table td { font-size: 14px; color: var(--gray-700); }
+        .data-table tr:hover { background: var(--gray-50); }
+        .data-table tr:last-child td { border-bottom: none; }
+
+        .status { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+        .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .status-live { background: var(--green-light); color: #047857; }
+        .status-live .status-dot { background: var(--green); }
+        .status-hidden { background: var(--gray-100); color: var(--gray-600); }
+        .status-hidden .status-dot { background: var(--gray-400); }
+
+        .toggle { position: relative; width: 44px; height: 24px; }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: var(--gray-300); border-radius: 24px; transition: 0.3s; }
+        .toggle-slider::before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.3s; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
+        .toggle input:checked + .toggle-slider { background: var(--green); }
+        .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+        .action-btns { display: flex; gap: 8px; }
+        .action-btn { width: 32px; height: 32px; border: none; background: var(--gray-100); border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; color: var(--gray-600); }
+        .action-btn:hover { background: var(--gray-200); color: var(--gray-800); }
+        .action-btn svg { width: 16px; height: 16px; }
+        .action-btn.delete:hover { background: var(--red-light); color: var(--red); }
+
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .modal-overlay.show { opacity: 1; visibility: visible; }
+        .modal { background: var(--white); border-radius: 16px; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; transform: translateY(20px); transition: transform 0.3s ease; }
+        .modal-overlay.show .modal { transform: translateY(0); }
+        .modal-header { padding: 24px; border-bottom: 1px solid var(--gray-100); display: flex; justify-content: space-between; align-items: center; }
+        .modal-header h3 { font-size: 18px; font-weight: 600; color: var(--gray-900); }
+        .modal-close { width: 32px; height: 32px; border: none; background: var(--gray-100); border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--gray-600); }
+        .modal-close:hover { background: var(--gray-200); }
+        .modal-close svg { width: 18px; height: 18px; }
+        .modal-body { padding: 24px; }
+        .modal-footer { padding: 16px 24px; border-top: 1px solid var(--gray-100); display: flex; justify-content: flex-end; gap: 12px; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 500; color: var(--gray-700); margin-bottom: 6px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 14px; font-size: 14px; border: 1px solid var(--gray-300); border-radius: 8px; transition: all 0.2s ease; font-family: inherit; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45, 90, 74, 0.1); }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-help { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+
+        .quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+        .quick-action { background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px; text-align: center; cursor: pointer; transition: all 0.2s ease; text-decoration: none; color: inherit; }
+        .quick-action:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+        .quick-action-icon { width: 48px; height: 48px; background: var(--gray-100); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+        .quick-action-icon svg { width: 24px; height: 24px; color: var(--primary); }
+        .quick-action h4 { font-size: 14px; font-weight: 600; color: var(--gray-900); margin-bottom: 4px; }
+        .quick-action p { font-size: 12px; color: var(--gray-500); }
+
+        .stripe-card { background: linear-gradient(135deg, #635bff 0%, #0a2540 100%); color: white; padding: 32px; border-radius: 12px; margin-bottom: 24px; }
+        .stripe-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+        .stripe-card p { opacity: 0.8; margin-bottom: 20px; }
+        .stripe-card .btn { background: white; color: #635bff; }
+        .stripe-card .btn:hover { background: #f5f5f5; }
+
+        .toast { position: fixed; bottom: 24px; right: 24px; background: var(--gray-900); color: white; padding: 16px 24px; border-radius: 10px; font-size: 14px; font-weight: 500; z-index: 2000; opacity: 0; transform: translateY(20px); transition: all 0.3s ease; }
+        .toast.show { opacity: 1; transform: translateY(0); }
+        .toast.success { background: var(--green); }
+        .toast.error { background: var(--red); }
+
+        .empty-state { text-align: center; padding: 60px 24px; }
+        .empty-state p { color: var(--gray-500); font-size: 14px; }
+
+        @media (max-width: 1024px) { .stats-grid, .quick-actions { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); }
+            .main { margin-left: 0; }
+            .stats-grid, .quick-actions { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <h1>Women of the Court</h1>
+            <span>Owner Dashboard</span>
+        </div>
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="#" class="active" data-section="overview">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    Overview
+                </a></li>
+                <li class="sidebar-section">Content</li>
+                <li><a href="#" data-section="events">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Events
+                </a></li>
+                <li><a href="#" data-section="programs">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    Programs
+                </a></li>
+                <li><a href="#" data-section="blog">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                    Blog & Updates
+                </a></li>
+                <li><a href="#" data-section="announcements">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+                    Announcements
+                </a></li>
+                <li><a href="#" data-section="shop">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    Shop
+                </a></li>
+                <li class="sidebar-section">Payments</li>
+                <li><a href="#" data-section="stripe">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                    Stripe Payments
+                </a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../public/index.html" target="_blank">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                View Live Site
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+        <header class="topbar">
+            <div class="topbar-title">
+                <h2 id="pageTitle">Overview</h2>
+                <p id="pageSubtitle">Welcome back, Marcy</p>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-secondary" onclick="logout()">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                    Sign Out
+                </button>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- OVERVIEW -->
+            <div class="section active" id="overview">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon green">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="statEvents">0</div>
+                        <div class="stat-card-label">Live Events</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon blue">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="statPrograms">0</div>
+                        <div class="stat-card-label">Active Programs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon yellow">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="statProducts">0</div>
+                        <div class="stat-card-label">Shop Products</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon primary">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="statPosts">0</div>
+                        <div class="stat-card-label">Blog Posts</div>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 16px; font-weight: 600; color: var(--gray-900); margin-bottom: 16px;">Quick Actions</h3>
+                <div class="quick-actions">
+                    <a href="#" class="quick-action" onclick="showSection('events'); openModal('eventModal'); return false;">
+                        <div class="quick-action-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                        </div>
+                        <h4>Add Event</h4>
+                        <p>Create a new event</p>
+                    </a>
+                    <a href="#" class="quick-action" onclick="showSection('blog'); openModal('blogModal'); return false;">
+                        <div class="quick-action-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                        </div>
+                        <h4>Write Post</h4>
+                        <p>Share an update or blog</p>
+                    </a>
+                    <a href="#" class="quick-action" onclick="showSection('announcements'); openModal('announcementModal'); return false;">
+                        <div class="quick-action-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+                        </div>
+                        <h4>Announcement</h4>
+                        <p>Quick community update</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- EVENTS -->
+            <div class="section" id="events">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>All Events</h3>
+                        <button class="btn btn-primary" onclick="openModal('eventModal')">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                            Add Event
+                        </button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Event Name</th><th>Date</th><th>Type</th><th>Price</th><th>Status</th><th>Visible</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody id="eventsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PROGRAMS -->
+            <div class="section" id="programs">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>All Programs</h3>
+                        <button class="btn btn-primary" onclick="openModal('programModal')">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                            Add Program
+                        </button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Program Name</th><th>Schedule</th><th>Level</th><th>Price</th><th>Visible</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody id="programsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- BLOG -->
+            <div class="section" id="blog">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Blog Posts & Updates</h3>
+                        <button class="btn btn-primary" onclick="openModal('blogModal')">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                            Write Post
+                        </button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Title</th><th>Date</th><th>Type</th><th>Visible</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody id="postsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ANNOUNCEMENTS -->
+            <div class="section" id="announcements">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Community Announcements</h3>
+                        <button class="btn btn-primary" onclick="openModal('announcementModal')">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                            New Announcement
+                        </button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Message</th><th>Posted</th><th>Visible</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody id="announcementsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SHOP -->
+            <div class="section" id="shop">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Shop Products</h3>
+                        <button class="btn btn-primary" onclick="openModal('productModal')">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                            Add Product
+                        </button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Product</th><th>Price</th><th>Category</th><th>Visible</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody id="productsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- STRIPE -->
+            <div class="section" id="stripe">
+                <div class="stripe-card">
+                    <h3>Stripe Dashboard</h3>
+                    <p>View payments, manage subscriptions, and track revenue directly in Stripe.</p>
+                    <a href="https://dashboard.stripe.com" target="_blank" class="btn">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 18px; height: 18px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        Open Stripe Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- EVENT MODAL -->
+    <div class="modal-overlay" id="eventModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="eventModalTitle">Add New Event</h3>
+                <button class="modal-close" onclick="closeModal('eventModal')">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <form id="eventForm">
+                <div class="modal-body">
+                    <input type="hidden" id="eventId">
+                    <div class="form-group">
+                        <label>Event Name *</label>
+                        <input type="text" id="eventTitle" placeholder="e.g., Spring Tennis Mixer" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date *</label>
+                            <input type="date" id="eventDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="text" id="eventTime" placeholder="e.g., 10:00 AM - 2:00 PM">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="eventCategory">
+                                <option value="social">Social</option>
+                                <option value="clinic">Clinic</option>
+                                <option value="tournament">Tournament</option>
+                                <option value="league">League</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Price ($)</label>
+                            <input type="number" id="eventPrice" placeholder="0 for free" min="0" step="0.01">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="eventDescription" placeholder="Tell members about this event..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Stripe Payment Link</label>
+                        <input type="url" id="eventStripeLink" placeholder="https://buy.stripe.com/...">
+                        <p class="form-help">Paste your Stripe payment link for paid events</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('eventModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- PROGRAM MODAL -->
+    <div class="modal-overlay" id="programModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="programModalTitle">Add Program</h3>
+                <button class="modal-close" onclick="closeModal('programModal')">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <form id="programForm">
+                <div class="modal-body">
+                    <input type="hidden" id="programId">
+                    <div class="form-group">
+                        <label>Program Name *</label>
+                        <input type="text" id="programTitle" placeholder="e.g., Beginner Tennis Fundamentals" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Schedule</label>
+                            <input type="text" id="programSchedule" placeholder="e.g., Tuesdays & Thursdays">
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="text" id="programTime" placeholder="e.g., 10:00 AM - 11:30 AM">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Level</label>
+                            <select id="programLevel">
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                                <option value="all">All Levels</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Price ($)</label>
+                            <input type="number" id="programPrice" placeholder="35" min="0" step="0.01">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="programDescription" placeholder="Describe what participants will learn..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Stripe Payment Link</label>
+                        <input type="url" id="programStripeLink" placeholder="https://buy.stripe.com/...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('programModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Program</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- BLOG MODAL -->
+    <div class="modal-overlay" id="blogModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="blogModalTitle">Write Blog Post</h3>
+                <button class="modal-close" onclick="closeModal('blogModal')">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <form id="blogForm">
+                <div class="modal-body">
+                    <input type="hidden" id="postId">
+                    <div class="form-group">
+                        <label>Title *</label>
+                        <input type="text" id="postTitle" placeholder="e.g., 5 Tips for Better Doubles Play" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select id="postType">
+                            <option value="announcement">Announcement</option>
+                            <option value="news">News</option>
+                            <option value="tip">Tip</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Content *</label>
+                        <textarea id="postContent" rows="6" placeholder="Write your post here..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Video URL (optional)</label>
+                        <input type="url" id="postVideoUrl" placeholder="https://youtube.com/watch?v=...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('blogModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Publish Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ANNOUNCEMENT MODAL -->
+    <div class="modal-overlay" id="announcementModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="announcementModalTitle">New Announcement</h3>
+                <button class="modal-close" onclick="closeModal('announcementModal')">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <form id="announcementForm">
+                <div class="modal-body">
+                    <input type="hidden" id="announcementId">
+                    <div class="form-group">
+                        <label>Title *</label>
+                        <input type="text" id="announcementTitle" placeholder="e.g., Spring Registration Open!" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message *</label>
+                        <textarea id="announcementContent" rows="3" placeholder="e.g., Sign up for March events now" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('announcementModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Post Announcement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- PRODUCT MODAL -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="productModalTitle">Add Product</h3>
+                <button class="modal-close" onclick="closeModal('productModal')">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <form id="productForm">
+                <div class="modal-body">
+                    <input type="hidden" id="productId">
+                    <div class="form-group">
+                        <label>Product Name *</label>
+                        <input type="text" id="productTitle" placeholder="e.g., WOTC Team T-Shirt" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Price ($) *</label>
+                            <input type="number" id="productPrice" placeholder="35" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="productCategory">
+                                <option value="apparel">Apparel</option>
+                                <option value="equipment">Equipment</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="productDescription" placeholder="Describe the product..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Stripe/Affiliate Link</label>
+                        <input type="url" id="productStripeLink" placeholder="https://buy.stripe.com/... or affiliate link">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('productModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <!-- SCRIPTS -->
+    <script src="js/data.js"></script>
+    <script>
+        // Check authentication
+        if (sessionStorage.getItem('wotc_authenticated') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        // ========== SECTION NAVIGATION ==========
+        const sectionTitles = {
+            'overview': { title: 'Overview', subtitle: 'Welcome back, Marcy' },
+            'events': { title: 'Events', subtitle: 'Manage your upcoming events' },
+            'programs': { title: 'Programs', subtitle: 'Manage tennis programs' },
+            'blog': { title: 'Blog & Updates', subtitle: 'Share content with your community' },
+            'announcements': { title: 'Announcements', subtitle: 'Quick community updates' },
+            'shop': { title: 'Shop', subtitle: 'Manage products and merchandise' },
+            'stripe': { title: 'Stripe Payments', subtitle: 'Payment links and Stripe access' }
+        };
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+            document.querySelector(`.sidebar-nav a[data-section="${sectionId}"]`).classList.add('active');
+            document.getElementById('pageTitle').textContent = sectionTitles[sectionId].title;
+            document.getElementById('pageSubtitle').textContent = sectionTitles[sectionId].subtitle;
+        }
+
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showSection(link.dataset.section);
+            });
+        });
+
+        // ========== MODAL ==========
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            document.body.style.overflow = '';
+            // Reset form
+            const form = document.querySelector(`#${modalId} form`);
+            if (form) form.reset();
+        }
+
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // ========== TOAST ==========
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast ' + type + ' show';
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ========== LOGOUT ==========
+        function logout() {
+            sessionStorage.removeItem('wotc_authenticated');
+            window.location.href = 'index.html';
+        }
+
+        // ========== FORMAT DATE ==========
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        // ========== RENDER FUNCTIONS ==========
+        function renderEvents() {
+            const events = WOTCData.events.getAll();
+            const tbody = document.getElementById('eventsTableBody');
+            tbody.innerHTML = events.map(e => `
+                <tr data-id="${e.id}">
+                    <td><strong>${e.title}</strong></td>
+                    <td>${formatDate(e.date)}</td>
+                    <td>${e.category.charAt(0).toUpperCase() + e.category.slice(1)}</td>
+                    <td>${e.price > 0 ? '$' + e.price : 'Free'}</td>
+                    <td><span class="status ${e.visible ? 'status-live' : 'status-hidden'}"><span class="status-dot"></span> ${e.visible ? 'Live' : 'Hidden'}</span></td>
+                    <td>
+                        <label class="toggle">
+                            <input type="checkbox" ${e.visible ? 'checked' : ''} onchange="toggleVisibility('events', '${e.id}')">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn" onclick="editEvent('${e.id}')" title="Edit">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteItem('events', '${e.id}')" title="Delete">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderPrograms() {
+            const programs = WOTCData.programs.getAll();
+            const tbody = document.getElementById('programsTableBody');
+            tbody.innerHTML = programs.map(p => `
+                <tr data-id="${p.id}">
+                    <td><strong>${p.title}</strong></td>
+                    <td>${p.schedule}</td>
+                    <td>${p.level.charAt(0).toUpperCase() + p.level.slice(1)}</td>
+                    <td>$${p.price}/${p.priceType || 'session'}</td>
+                    <td>
+                        <label class="toggle">
+                            <input type="checkbox" ${p.visible ? 'checked' : ''} onchange="toggleVisibility('programs', '${p.id}')">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn" onclick="editProgram('${p.id}')" title="Edit">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteItem('programs', '${p.id}')" title="Delete">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderPosts() {
+            const posts = WOTCData.posts.getAll();
+            const tbody = document.getElementById('postsTableBody');
+            tbody.innerHTML = posts.map(p => `
+                <tr data-id="${p.id}">
+                    <td><strong>${p.title}</strong></td>
+                    <td>${formatDate(p.createdAt)}</td>
+                    <td>${p.type.charAt(0).toUpperCase() + p.type.slice(1)}</td>
+                    <td>
+                        <label class="toggle">
+                            <input type="checkbox" ${p.visible ? 'checked' : ''} onchange="toggleVisibility('posts', '${p.id}')">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn" onclick="editPost('${p.id}')" title="Edit">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteItem('posts', '${p.id}')" title="Delete">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderAnnouncements() {
+            const announcements = WOTCData.announcements.getAll();
+            const tbody = document.getElementById('announcementsTableBody');
+            tbody.innerHTML = announcements.map(a => `
+                <tr data-id="${a.id}">
+                    <td><strong>${a.title}</strong><br><span style="color: var(--gray-500); font-size: 13px;">${a.content}</span></td>
+                    <td>${formatDate(a.createdAt)}</td>
+                    <td>
+                        <label class="toggle">
+                            <input type="checkbox" ${a.visible ? 'checked' : ''} onchange="toggleVisibility('announcements', '${a.id}')">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn" onclick="editAnnouncement('${a.id}')" title="Edit">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteItem('announcements', '${a.id}')" title="Delete">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderProducts() {
+            const products = WOTCData.products.getAll();
+            const tbody = document.getElementById('productsTableBody');
+            tbody.innerHTML = products.map(p => `
+                <tr data-id="${p.id}">
+                    <td><strong>${p.title}</strong></td>
+                    <td>$${p.price}${p.salePrice ? ' <del style="color:var(--gray-400)">$' + p.salePrice + '</del>' : ''}</td>
+                    <td>${p.category.charAt(0).toUpperCase() + p.category.slice(1)}</td>
+                    <td>
+                        <label class="toggle">
+                            <input type="checkbox" ${p.visible ? 'checked' : ''} onchange="toggleVisibility('products', '${p.id}')">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn" onclick="editProduct('${p.id}')" title="Edit">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteItem('products', '${p.id}')" title="Delete">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateStats() {
+            const stats = WOTCData.getStats();
+            document.getElementById('statEvents').textContent = stats.totalEvents;
+            document.getElementById('statPrograms').textContent = stats.totalPrograms;
+            document.getElementById('statProducts').textContent = stats.totalProducts;
+            document.getElementById('statPosts').textContent = stats.totalPosts;
+        }
+
+        function renderAll() {
+            renderEvents();
+            renderPrograms();
+            renderPosts();
+            renderAnnouncements();
+            renderProducts();
+            updateStats();
+        }
+
+        // ========== TOGGLE VISIBILITY ==========
+        function toggleVisibility(type, id) {
+            WOTCData.toggleVisibility(type, id);
+            renderAll();
+            showToast('Visibility updated');
+        }
+
+        // ========== DELETE ==========
+        function deleteItem(type, id) {
+            if (confirm('Are you sure you want to delete this item?')) {
+                WOTCData.delete(type, id);
+                renderAll();
+                showToast('Item deleted');
+            }
+        }
+
+        // ========== EDIT FUNCTIONS ==========
+        function editEvent(id) {
+            const event = WOTCData.events.getById(id);
+            if (event) {
+                document.getElementById('eventModalTitle').textContent = 'Edit Event';
+                document.getElementById('eventId').value = event.id;
+                document.getElementById('eventTitle').value = event.title;
+                document.getElementById('eventDate').value = event.date;
+                document.getElementById('eventTime').value = event.time || '';
+                document.getElementById('eventCategory').value = event.category;
+                document.getElementById('eventPrice').value = event.price || '';
+                document.getElementById('eventDescription').value = event.description || '';
+                document.getElementById('eventStripeLink').value = event.stripeLink || '';
+                openModal('eventModal');
+            }
+        }
+
+        function editProgram(id) {
+            const program = WOTCData.programs.getById(id);
+            if (program) {
+                document.getElementById('programModalTitle').textContent = 'Edit Program';
+                document.getElementById('programId').value = program.id;
+                document.getElementById('programTitle').value = program.title;
+                document.getElementById('programSchedule').value = program.schedule || '';
+                document.getElementById('programTime').value = program.time || '';
+                document.getElementById('programLevel').value = program.level;
+                document.getElementById('programPrice').value = program.price || '';
+                document.getElementById('programDescription').value = program.description || '';
+                document.getElementById('programStripeLink').value = program.stripeLink || '';
+                openModal('programModal');
+            }
+        }
+
+        function editPost(id) {
+            const post = WOTCData.posts.getById(id);
+            if (post) {
+                document.getElementById('blogModalTitle').textContent = 'Edit Post';
+                document.getElementById('postId').value = post.id;
+                document.getElementById('postTitle').value = post.title;
+                document.getElementById('postType').value = post.type;
+                document.getElementById('postContent').value = post.content || '';
+                document.getElementById('postVideoUrl').value = post.videoUrl || '';
+                openModal('blogModal');
+            }
+        }
+
+        function editAnnouncement(id) {
+            const ann = WOTCData.announcements.getById(id);
+            if (ann) {
+                document.getElementById('announcementModalTitle').textContent = 'Edit Announcement';
+                document.getElementById('announcementId').value = ann.id;
+                document.getElementById('announcementTitle').value = ann.title;
+                document.getElementById('announcementContent').value = ann.content || '';
+                openModal('announcementModal');
+            }
+        }
+
+        function editProduct(id) {
+            const product = WOTCData.products.getById(id);
+            if (product) {
+                document.getElementById('productModalTitle').textContent = 'Edit Product';
+                document.getElementById('productId').value = product.id;
+                document.getElementById('productTitle').value = product.title;
+                document.getElementById('productPrice').value = product.price;
+                document.getElementById('productCategory').value = product.category;
+                document.getElementById('productDescription').value = product.description || '';
+                document.getElementById('productStripeLink').value = product.stripeLink || '';
+                openModal('productModal');
+            }
+        }
+
+        // ========== FORM SUBMISSIONS ==========
+        document.getElementById('eventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = document.getElementById('eventId').value;
+            const data = {
+                title: document.getElementById('eventTitle').value,
+                date: document.getElementById('eventDate').value,
+                time: document.getElementById('eventTime').value,
+                category: document.getElementById('eventCategory').value,
+                price: parseFloat(document.getElementById('eventPrice').value) || 0,
+                description: document.getElementById('eventDescription').value,
+                stripeLink: document.getElementById('eventStripeLink').value,
+                visible: true
+            };
+            if (id) {
+                WOTCData.events.update(id, data);
+                showToast('Event updated');
+            } else {
+                WOTCData.events.create(data);
+                showToast('Event created');
+            }
+            closeModal('eventModal');
+            document.getElementById('eventModalTitle').textContent = 'Add New Event';
+            document.getElementById('eventId').value = '';
+            renderAll();
+        });
+
+        document.getElementById('programForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = document.getElementById('programId').value;
+            const data = {
+                title: document.getElementById('programTitle').value,
+                schedule: document.getElementById('programSchedule').value,
+                time: document.getElementById('programTime').value,
+                level: document.getElementById('programLevel').value,
+                price: parseFloat(document.getElementById('programPrice').value) || 0,
+                priceType: 'per session',
+                description: document.getElementById('programDescription').value,
+                stripeLink: document.getElementById('programStripeLink').value,
+                visible: true
+            };
+            if (id) {
+                WOTCData.programs.update(id, data);
+                showToast('Program updated');
+            } else {
+                WOTCData.programs.create(data);
+                showToast('Program created');
+            }
+            closeModal('programModal');
+            document.getElementById('programModalTitle').textContent = 'Add Program';
+            document.getElementById('programId').value = '';
+            renderAll();
+        });
+
+        document.getElementById('blogForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = document.getElementById('postId').value;
+            const data = {
+                title: document.getElementById('postTitle').value,
+                type: document.getElementById('postType').value,
+                content: document.getElementById('postContent').value,
+                videoUrl: document.getElementById('postVideoUrl').value,
+                visible: true
+            };
+            if (id) {
+                WOTCData.posts.update(id, data);
+                showToast('Post updated');
+            } else {
+                WOTCData.posts.create(data);
+                showToast('Post published');
+            }
+            closeModal('blogModal');
+            document.getElementById('blogModalTitle').textContent = 'Write Blog Post';
+            document.getElementById('postId').value = '';
+            renderAll();
+        });
+
+        document.getElementById('announcementForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = document.getElementById('announcementId').value;
+            const data = {
+                title: document.getElementById('announcementTitle').value,
+                content: document.getElementById('announcementContent').value,
+                visible: true
+            };
+            if (id) {
+                WOTCData.announcements.update(id, data);
+                showToast('Announcement updated');
+            } else {
+                WOTCData.announcements.create(data);
+                showToast('Announcement posted');
+            }
+            closeModal('announcementModal');
+            document.getElementById('announcementModalTitle').textContent = 'New Announcement';
+            document.getElementById('announcementId').value = '';
+            renderAll();
+        });
+
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = document.getElementById('productId').value;
+            const data = {
+                title: document.getElementById('productTitle').value,
+                price: parseFloat(document.getElementById('productPrice').value) || 0,
+                category: document.getElementById('productCategory').value,
+                description: document.getElementById('productDescription').value,
+                stripeLink: document.getElementById('productStripeLink').value,
+                visible: true
+            };
+            if (id) {
+                WOTCData.products.update(id, data);
+                showToast('Product updated');
+            } else {
+                WOTCData.products.create(data);
+                showToast('Product added');
+            }
+            closeModal('productModal');
+            document.getElementById('productModalTitle').textContent = 'Add Product';
+            document.getElementById('productId').value = '';
+            renderAll();
+        });
+
+        // ========== INIT ==========
+        renderAll();
+    </script>
+</body>
+</html>

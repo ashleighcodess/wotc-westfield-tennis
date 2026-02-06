@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Community | Women of the Court at Westfield Indoor Tennis Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d5a4a;
+            --primary-light: #3d7a64;
+            --primary-dark: #1e3d32;
+            --accent: #c9a87c;
+            --accent-light: #d4b88a;
+            --cream: #faf8f5;
+            --white: #ffffff;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-400: #9ca3af;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--gray-800);
+            line-height: 1.6;
+            background-color: var(--cream);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--white);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-logo-main {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-logo-sub {
+            font-size: 11px;
+            color: var(--gray-600);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-light);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--gray-800);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 48px;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .page-hero p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.85);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Announcements Banner */
+        .announcements-section {
+            background: var(--accent);
+            padding: 20px 0;
+        }
+
+        .announcement-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--white);
+        }
+
+        .announcement-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .announcement-item p {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .announcement-item a {
+            color: var(--white);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        /* Events Filter */
+        .events-filter {
+            background: var(--white);
+            padding: 24px 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .filter-tab {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+
+        .filter-tab:hover {
+            background: var(--gray-200);
+        }
+
+        .filter-tab.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .filter-search {
+            position: relative;
+        }
+
+        .filter-search input {
+            padding: 10px 16px 10px 40px;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 14px;
+            width: 250px;
+            font-family: inherit;
+        }
+
+        .filter-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .filter-search svg {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: var(--gray-400);
+        }
+
+        /* Events Grid */
+        .events-section {
+            padding: 60px 0;
+        }
+
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .events-header h2 {
+            font-size: 32px;
+            color: var(--gray-900);
+        }
+
+        .events-count {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .event-card-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .event-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-card-image .placeholder-icon {
+            width: 48px;
+            height: 48px;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .event-date-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--white);
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .event-date-badge .month {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-date-badge .day {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1;
+        }
+
+        .event-category {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .event-card-content {
+            padding: 28px;
+        }
+
+        .event-card-content h3 {
+            font-size: 22px;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .event-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        .event-meta-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--primary);
+        }
+
+        .event-card-content p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .event-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .event-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .event-price span {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--gray-400);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Featured Event */
+        .featured-event {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .featured-event .event-card-image {
+            height: 100%;
+            min-height: 350px;
+        }
+
+        .featured-event .event-card-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .featured-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .featured-event h3 {
+            font-size: 28px;
+        }
+
+        /* Community Updates */
+        .community-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .community-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+
+        .community-header h2 {
+            font-size: 36px;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+
+        .community-header p {
+            font-size: 17px;
+            color: var(--gray-600);
+        }
+
+        .updates-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .update-card {
+            background: var(--cream);
+            border-radius: 12px;
+            padding: 28px;
+            transition: transform 0.3s ease;
+        }
+
+        .update-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .update-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .update-type {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .update-type.announcement {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .update-type.news {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .update-type.tip {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .update-date {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        .update-card h4 {
+            font-size: 18px;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .update-card p {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .update-card a {
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 12px;
+        }
+
+        .update-card a:hover {
+            text-decoration: underline;
+        }
+
+        .update-card a svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Calendar Section */
+        .calendar-section {
+            padding: 80px 0;
+            background: var(--cream);
+        }
+
+        .calendar-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+
+        .calendar-header h2 {
+            font-size: 36px;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+
+        .calendar-header p {
+            font-size: 17px;
+            color: var(--gray-600);
+        }
+
+        .calendar-widget {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 32px;
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .calendar-nav h3 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .calendar-nav-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .calendar-nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .calendar-nav-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .calendar-nav-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .calendar-grid {
+            padding: 24px 32px;
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .calendar-weekday {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 0;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-600);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            background: var(--gray-100);
+        }
+
+        .calendar-day.other-month {
+            color: var(--gray-300);
+        }
+
+        .calendar-day.today {
+            background: var(--gray-100);
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .calendar-day.has-event::after {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .calendar-day.has-event:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .calendar-day.has-event:hover::after {
+            background: var(--white);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 40px;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .cta-content p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 32px;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-white:hover {
+            background: var(--cream);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: var(--gray-400);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 22px;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .footer-brand .subtitle {
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .footer-column h4 {
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid var(--gray-800);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--gray-800);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            transition: all 0.2s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-hero h1 {
+                font-size: 36px;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-event {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-event .event-card-image {
+                min-height: 250px;
+            }
+
+            .updates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-tabs {
+                overflow-x: auto;
+                padding-bottom: 8px;
+            }
+
+            .filter-search input {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-hero {
+                padding: 60px 0;
+            }
+
+            .page-hero h1 {
+                font-size: 32px;
+            }
+
+            .events-section,
+            .community-section,
+            .calendar-section {
+                padding: 48px 0;
+            }
+
+            .events-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .event-card-footer {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+            }
+
+            .event-card-footer .btn {
+                justify-content: center;
+            }
+
+            .calendar-nav {
+                padding: 20px;
+            }
+
+            .calendar-grid {
+                padding: 16px;
+            }
+
+            .calendar-day {
+                font-size: 12px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="nav-logo-main">Women of the Court</span>
+                <span class="nav-logo-sub">at Westfield Indoor Tennis Club</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html" class="active">Events</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="#upcoming" class="nav-cta">Register Now</a>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <h1>Events & Community</h1>
+            <p>Join us for tournaments, social gatherings, clinics, and more. There's always something happening at Women of the Court.</p>
+        </div>
+    </section>
+
+    <!-- Announcements Banner -->
+    <section class="announcements-section">
+        <div class="container">
+            <div class="announcement-item">
+                <svg class="announcement-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                </svg>
+                <p>Spring Registration Now Open! <a href="#upcoming">Sign up for our March events</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Filter -->
+    <section class="events-filter">
+        <div class="container">
+            <div class="filter-container">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">All Events</button>
+                    <button class="filter-tab" data-filter="tournament">Tournaments</button>
+                    <button class="filter-tab" data-filter="social">Social</button>
+                    <button class="filter-tab" data-filter="clinic">Clinics</button>
+                    <button class="filter-tab" data-filter="league">Leagues</button>
+                </div>
+                <div class="filter-search">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input type="text" placeholder="Search events...">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section" id="upcoming">
+        <div class="container">
+            <div class="events-header">
+                <h2>Upcoming Events</h2>
+                <span class="events-count">Showing 5 events</span>
+            </div>
+            <div class="events-grid">
+                <!-- Featured Event -->
+                <div class="featured-event">
+                    <div class="event-card-image">
+                        <img src="images/events/spring-mixer.jpg" alt="Spring Tennis Mixer" onerror="this.style.display='none'; this.parentElement.innerHTML+='<svg class=\'placeholder-icon\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'currentColor\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1\' d=\'M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z\'/><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1\' d=\'M21 12a9 9 0 11-18 0 9 9 0 0118 0z\'/></svg>';">
+                        <div class="event-date-badge">
+                            <span class="month">Mar</span>
+                            <span class="day">15</span>
+                        </div>
+                    </div>
+                    <div class="event-card-content">
+                        <div class="featured-badge">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                            Featured Event
+                        </div>
+                        <h3>Spring Tennis Mixer & Social</h3>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>10:00 AM - 2:00 PM</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                <span>Westfield Indoor Tennis Club</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                <span>24 spots remaining</span>
+                            </div>
+                        </div>
+                        <p>Kick off the spring season with our biggest social event! Mixed doubles round-robin, brunch, and prizes. All skill levels welcome. Meet new playing partners and enjoy a fun day on the courts.</p>
+                        <div class="event-card-footer">
+                            <div class="event-price">$45 <span>per person</span></div>
+                            <a href="#" class="btn btn-primary">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regular Event Cards -->
+                <div class="event-card" data-category="clinic">
+                    <div class="event-card-image">
+                        <img src="images/events/serve-clinic.jpg" alt="Serve & Volley Clinic" onerror="this.style.display='none';">
+                        <div class="event-date-badge">
+                            <span class="month">Mar</span>
+                            <span class="day">8</span>
+                        </div>
+                        <span class="event-category">Clinic</span>
+                    </div>
+                    <div class="event-card-content">
+                        <h3>Serve & Volley Clinic</h3>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>9:00 AM - 11:00 AM</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                <span>8 spots remaining</span>
+                            </div>
+                        </div>
+                        <p>Master the art of serve and volley with Coach Lexi. Focus on technique, footwork, and net game strategy.</p>
+                        <div class="event-card-footer">
+                            <div class="event-price">$35 <span>per person</span></div>
+                            <a href="#" class="btn btn-primary">Register</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-category="tournament">
+                    <div class="event-card-image">
+                        <img src="images/events/doubles-tournament.jpg" alt="Women's Doubles Tournament" onerror="this.style.display='none';">
+                        <div class="event-date-badge">
+                            <span class="month">Mar</span>
+                            <span class="day">22</span>
+                        </div>
+                        <span class="event-category">Tournament</span>
+                    </div>
+                    <div class="event-card-content">
+                        <h3>Women's Doubles Tournament</h3>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>8:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                <span>12 teams max</span>
+                            </div>
+                        </div>
+                        <p>Competitive doubles tournament for 3.5+ level players. Prizes for winners and finalists. Lunch included.</p>
+                        <div class="event-card-footer">
+                            <div class="event-price">$60 <span>per team</span></div>
+                            <a href="#" class="btn btn-primary">Register</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-category="social">
+                    <div class="event-card-image">
+                        <img src="images/events/wine-tennis.jpg" alt="Wine & Tennis Night" onerror="this.style.display='none';">
+                        <div class="event-date-badge">
+                            <span class="month">Mar</span>
+                            <span class="day">29</span>
+                        </div>
+                        <span class="event-category">Social</span>
+                    </div>
+                    <div class="event-card-content">
+                        <h3>Wine & Tennis Night</h3>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>6:00 PM - 9:00 PM</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                <span>20 spots remaining</span>
+                            </div>
+                        </div>
+                        <p>An evening of casual tennis, wine tasting, and socializing. No partner needed - we'll match you up!</p>
+                        <div class="event-card-footer">
+                            <div class="event-price">$30 <span>per person</span></div>
+                            <a href="#" class="btn btn-primary">Register</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-category="league">
+                    <div class="event-card-image">
+                        <img src="images/events/spring-league.jpg" alt="Spring League Registration" onerror="this.style.display='none';">
+                        <div class="event-date-badge">
+                            <span class="month">Apr</span>
+                            <span class="day">1</span>
+                        </div>
+                        <span class="event-category">League</span>
+                    </div>
+                    <div class="event-card-content">
+                        <h3>Spring League Starts</h3>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>8-week season</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                <span>All levels welcome</span>
+                            </div>
+                        </div>
+                        <p>Join our weekly women's league! Play matches at your skill level, track standings, and compete for prizes.</p>
+                        <div class="event-card-footer">
+                            <div class="event-price">$120 <span>per season</span></div>
+                            <a href="#" class="btn btn-primary">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Updates -->
+    <section class="community-section">
+        <div class="container">
+            <div class="community-header">
+                <h2>Community Updates</h2>
+                <p>Stay in the loop with the latest news, tips, and announcements.</p>
+            </div>
+            <div class="updates-grid">
+                <div class="update-card">
+                    <div class="update-card-header">
+                        <span class="update-type announcement">Announcement</span>
+                        <span class="update-date">Jan 28</span>
+                    </div>
+                    <h4>Spring Schedule Released</h4>
+                    <p>Our spring program schedule is now available! Check out new clinic times, league options, and special events planned for March through May.</p>
+                    <a href="programs.html">View Programs <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="update-card">
+                    <div class="update-card-header">
+                        <span class="update-type news">News</span>
+                        <span class="update-date">Jan 25</span>
+                    </div>
+                    <h4>Court Resurfacing Complete</h4>
+                    <p>Great news! Courts 3 and 4 have been freshly resurfaced and are ready for play. Enjoy the improved bounce and grip!</p>
+                </div>
+                <div class="update-card">
+                    <div class="update-card-header">
+                        <span class="update-type tip">Tip</span>
+                        <span class="update-date">Jan 22</span>
+                    </div>
+                    <h4>Winter Warm-Up Routine</h4>
+                    <p>Cold muscles need extra care! Coach Lexi shares her favorite 10-minute warm-up routine to prevent injuries during winter play.</p>
+                    <a href="#">Read More <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section class="calendar-section">
+        <div class="container">
+            <div class="calendar-header">
+                <h2>Event Calendar</h2>
+                <p>Plan ahead and never miss an event.</p>
+            </div>
+            <div class="calendar-widget">
+                <div class="calendar-nav">
+                    <button class="calendar-nav-btn" aria-label="Previous month">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <h3>March 2025</h3>
+                    <button class="calendar-nav-btn" aria-label="Next month">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-weekdays">
+                        <div class="calendar-weekday">Sun</div>
+                        <div class="calendar-weekday">Mon</div>
+                        <div class="calendar-weekday">Tue</div>
+                        <div class="calendar-weekday">Wed</div>
+                        <div class="calendar-weekday">Thu</div>
+                        <div class="calendar-weekday">Fri</div>
+                        <div class="calendar-weekday">Sat</div>
+                    </div>
+                    <div class="calendar-days">
+                        <div class="calendar-day other-month">23</div>
+                        <div class="calendar-day other-month">24</div>
+                        <div class="calendar-day other-month">25</div>
+                        <div class="calendar-day other-month">26</div>
+                        <div class="calendar-day other-month">27</div>
+                        <div class="calendar-day other-month">28</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day has-event">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day has-event">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day has-event">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day has-event">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day other-month">1</div>
+                        <div class="calendar-day other-month">2</div>
+                        <div class="calendar-day other-month">3</div>
+                        <div class="calendar-day other-month">4</div>
+                        <div class="calendar-day other-month">5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Don't Miss Out</h2>
+                <p>Sign up for our newsletter to get event updates, early registration access, and exclusive member perks delivered to your inbox.</p>
+                <a href="contact.html" class="btn btn-white">Subscribe to Updates</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Women of the Court</h3>
+                    <p class="subtitle">at Westfield Indoor Tennis Club</p>
+                    <p>Building a community of women who share a passion for tennis, friendship, and healthy living.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="programs.html#clinics">Weekly Clinics</a></li>
+                        <li><a href="programs.html#lessons">Private Lessons</a></li>
+                        <li><a href="programs.html#leagues">Tennis Leagues</a></li>
+                        <li><a href="programs.html#beginners">Beginner Sessions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="tel:+19082334840">(908) 233-4840</a></li>
+                        <li><a href="mailto:info@wotctennis.com">info@wotctennis.com</a></li>
+                        <li><a href="contact.html">Westfield, NJ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Women of the Court. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.77,7.46H14.5v-1.9c0-.9.6-1.1,1-1.1h3V.5h-4.33C10.24.5,9.5,3.44,9.5,5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4Z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12,2.16c3.2,0,3.58,0,4.85.07,3.25.15,4.77,1.69,4.92,4.92.06,1.27.07,1.65.07,4.85s0,3.58-.07,4.85c-.15,3.23-1.66,4.77-4.92,4.92-1.27.06-1.65.07-4.85.07s-3.58,0-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s0-3.58.07-4.85C2.38,3.92,3.9,2.38,7.15,2.23,8.42,2.18,8.8,2.16,12,2.16ZM12,0C8.74,0,8.33,0,7.05.07c-4.27.2-6.78,2.71-7,7C0,8.33,0,8.74,0,12s0,3.67.07,4.95c.2,4.27,2.71,6.78,7,7C8.33,24,8.74,24,12,24s3.67,0,4.95-.07c4.27-.2,6.78-2.71,7-7C24,15.67,24,15.26,24,12s0-3.67-.07-4.95c-.2-4.27-2.71-6.78-7-7C15.67,0,15.26,0,12,0Zm0,5.84A6.16,6.16,0,1,0,18.16,12,6.16,6.16,0,0,0,12,5.84ZM12,16a4,4,0,1,1,4-4A4,4,0,0,1,12,16ZM18.41,4.15a1.44,1.44,0,1,0,1.44,1.44A1.44,1.44,0,0,0,18.41,4.15Z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/site-data.js"></script>
+    <script>
+        // ============ RENDER DYNAMIC CONTENT ============
+
+        function renderEvents() {
+            const eventsGrid = document.querySelector('.events-grid');
+            const events = SiteData.events.getUpcoming();
+            const featuredEvent = SiteData.events.getFeatured();
+
+            if (events.length === 0) {
+                eventsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--gray-600); padding: 40px;">No upcoming events. Check back soon!</p>';
+                document.querySelector('.events-count').textContent = 'No events';
+                return;
+            }
+
+            let html = '';
+
+            // Featured event first
+            if (featuredEvent) {
+                const date = SiteData.formatDate(featuredEvent.date);
+                const spotsLeft = featuredEvent.capacity - (featuredEvent.registered || 0);
+                html += `
+                    <div class="featured-event" data-category="${featuredEvent.category}">
+                        <div class="event-card-image">
+                            <svg class="placeholder-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <div class="event-date-badge">
+                                <span class="month">${date.month}</span>
+                                <span class="day">${date.day}</span>
+                            </div>
+                        </div>
+                        <div class="event-card-content">
+                            <div class="featured-badge">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                                Featured Event
+                            </div>
+                            <h3>${featuredEvent.title}</h3>
+                            <div class="event-meta">
+                                <div class="event-meta-item">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span>${featuredEvent.time}</span>
+                                </div>
+                                <div class="event-meta-item">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                    <span>Westfield Indoor Tennis Club</span>
+                                </div>
+                                <div class="event-meta-item">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                    <span>${spotsLeft} spots remaining</span>
+                                </div>
+                            </div>
+                            <p>${featuredEvent.description}</p>
+                            <div class="event-card-footer">
+                                <div class="event-price">${SiteData.formatPrice(featuredEvent.price)} <span>per person</span></div>
+                                <a href="${featuredEvent.stripeLink || '#'}" class="btn btn-primary">Register Now</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Other events (excluding featured)
+            events.filter(e => !e.featured || e.id !== featuredEvent?.id).forEach(event => {
+                const date = SiteData.formatDate(event.date);
+                const spotsLeft = event.capacity - (event.registered || 0);
+                html += `
+                    <div class="event-card" data-category="${event.category}">
+                        <div class="event-card-image">
+                            <svg class="placeholder-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <div class="event-date-badge">
+                                <span class="month">${date.month}</span>
+                                <span class="day">${date.day}</span>
+                            </div>
+                            <span class="event-category">${SiteData.getCategoryLabel(event.category)}</span>
+                        </div>
+                        <div class="event-card-content">
+                            <h3>${event.title}</h3>
+                            <div class="event-meta">
+                                <div class="event-meta-item">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span>${event.time}</span>
+                                </div>
+                                <div class="event-meta-item">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                    <span>${spotsLeft} spots remaining</span>
+                                </div>
+                            </div>
+                            <p>${event.description}</p>
+                            <div class="event-card-footer">
+                                <div class="event-price">${SiteData.formatPrice(event.price)} <span>per person</span></div>
+                                <a href="${event.stripeLink || '#'}" class="btn btn-primary">Register</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            eventsGrid.innerHTML = html;
+            document.querySelector('.events-count').textContent = `Showing ${events.length} events`;
+        }
+
+        function renderAnnouncement() {
+            const container = document.querySelector('.announcements-section .announcement-item');
+            const announcements = SiteData.announcements.getActive();
+
+            if (announcements.length > 0) {
+                const ann = announcements[0];
+                container.innerHTML = `
+                    <svg class="announcement-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                    </svg>
+                    <p>${ann.title} <a href="${ann.link || '#'}">${ann.linkText || 'Learn More'}</a></p>
+                `;
+            } else {
+                document.querySelector('.announcements-section').style.display = 'none';
+            }
+        }
+
+        function renderCommunityUpdates() {
+            const container = document.querySelector('.updates-grid');
+            const posts = SiteData.posts.getRecent(3);
+
+            if (posts.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--gray-600);">No updates yet.</p>';
+                return;
+            }
+
+            let html = '';
+            posts.forEach(post => {
+                const relativeDate = SiteData.getRelativeDate(post.createdAt);
+                html += `
+                    <div class="update-card">
+                        <div class="update-card-header">
+                            <span class="update-type ${post.type}">${SiteData.getCategoryLabel(post.type)}</span>
+                            <span class="update-date">${relativeDate}</span>
+                        </div>
+                        <h4>${post.title}</h4>
+                        <p>${post.content.substring(0, 150)}${post.content.length > 150 ? '...' : ''}</p>
+                        ${post.videoUrl ? `<a href="${post.videoUrl}">Watch Video <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>` : ''}
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderAnnouncement();
+            renderEvents();
+            renderCommunityUpdates();
+        });
+
+        // ============ FILTER FUNCTIONALITY ============
+
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+                const cards = document.querySelectorAll('.event-card, .featured-event');
+                let visibleCount = 0;
+
+                cards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = card.classList.contains('featured-event') ? 'grid' : 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                document.querySelector('.events-count').textContent = `Showing ${visibleCount} events`;
+            });
+        });
+
+        // Search functionality
+        document.querySelector('.filter-search input').addEventListener('input', function() {
+            const search = this.value.toLowerCase();
+            const cards = document.querySelectorAll('.event-card, .featured-event');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
+
+                if (title.includes(search) || desc.includes(search)) {
+                    card.style.display = card.classList.contains('featured-event') ? 'grid' : 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.querySelector('.events-count').textContent = `Showing ${visibleCount} events`;
+        });
+    </script>
+</body>
+</html>
