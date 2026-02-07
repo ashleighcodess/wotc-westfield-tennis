@@ -8,6 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Aminute';
+            src: url('fonts/Aminute.woff2') format('woff2'),
+                 url('fonts/Aminute.woff') format('woff'),
+                 url('fonts/Aminute.ttf') format('truetype');
+            font-style: normal;
+            font-weight: normal;
+            font-display: swap;
+        }
+
         :root {
             --primary: #2d5a4a;
             --primary-light: #3d7a64;
@@ -37,7 +47,13 @@
             background-color: var(--cream);
         }
 
-        h1, h2, h3, h4 {
+        h1, h2 {
+            font-family: 'Aminute', sans-serif;
+            line-height: 1.2;
+            font-weight: normal;
+        }
+
+        h3, h4 {
             font-family: 'DM Sans', sans-serif;
             font-weight: 600;
             line-height: 1.2;
@@ -72,11 +88,12 @@
         }
 
         .nav-logo-main {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 20px;
-            font-weight: 600;
+            font-family: 'Aminute', sans-serif;
+            font-size: 24px;
+            font-weight: normal;
             color: var(--primary);
             text-decoration: none;
+            letter-spacing: 0.5px;
         }
 
         .nav-logo-sub {
@@ -590,10 +607,12 @@
         }
 
         .footer-brand h3 {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Aminute', sans-serif;
             font-size: 22px;
             color: var(--white);
             margin-bottom: 8px;
+            font-weight: normal;
+            letter-spacing: 0.5px;
         }
 
         .footer-brand .subtitle {

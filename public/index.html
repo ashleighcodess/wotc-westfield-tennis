@@ -9,6 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Aminute';
+            src: url('fonts/Aminute.woff2') format('woff2'),
+                 url('fonts/Aminute.woff') format('woff'),
+                 url('fonts/Aminute.ttf') format('truetype');
+            font-style: normal;
+            font-weight: normal;
+            font-display: swap;
+        }
+
         :root {
             /* Tennis Together - Elegant & Energetic */
             --primary: #2d5a4a;        /* Deep forest green */
@@ -44,7 +54,13 @@
             background: var(--white);
         }
 
-        h1, h2, h3, h4 {
+        h1, h2 {
+            font-family: 'Aminute', sans-serif;
+            line-height: 1.2;
+            font-weight: normal;
+        }
+
+        h3, h4 {
             font-family: 'DM Sans', sans-serif;
             line-height: 1.2;
         }
@@ -95,12 +111,12 @@
         }
 
         .logo-main {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 24px;
-            font-weight: 600;
+            font-family: 'Aminute', sans-serif;
+            font-size: 28px;
+            font-weight: normal;
             color: var(--white);
             text-decoration: none;
-            letter-spacing: -0.5px;
+            letter-spacing: 0.5px;
             transition: color 0.4s ease;
         }
 
@@ -254,28 +270,29 @@
             overflow: hidden;
         }
 
-        /* Ken Burns animated background */
+        /* Video background */
         .hero-bg {
             position: absolute;
             inset: 0;
             z-index: 0;
+            overflow: hidden;
         }
 
-        .hero-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            animation: kenBurns 20s ease-in-out infinite alternate;
-            will-change: transform;
+        .hero-bg iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 250vh;
+            height: 140vh;
+            min-width: 140%;
+            min-height: 140%;
+            transform: translate(-50%, -50%);
+            border: none;
+            pointer-events: none;
         }
 
-        @keyframes kenBurns {
-            0% {
-                transform: scale(1.05) translate(0, 0);
-            }
-            100% {
-                transform: scale(1.1) translate(-1%, -0.5%);
-            }
+        .hero-bg {
+            background: #1a3a2a;
         }
 
         /* Green gradient overlay */
@@ -284,8 +301,8 @@
             inset: 0;
             z-index: 1;
             background:
-                linear-gradient(180deg, rgba(45,90,74,0.5) 0%, rgba(45,90,74,0.2) 40%, rgba(45,90,74,0.35) 70%, rgba(30,60,50,0.8) 100%),
-                linear-gradient(90deg, rgba(30,60,50,0.6) 0%, transparent 60%);
+                linear-gradient(180deg, transparent 0%, rgba(45,90,74,0.1) 25%, rgba(45,90,74,0.3) 60%, rgba(30,60,50,0.75) 100%),
+                linear-gradient(90deg, rgba(30,60,50,0.3) 0%, transparent 60%);
         }
 
         .hero .container {
@@ -328,7 +345,7 @@
             color: var(--white);
             margin-bottom: 24px;
             font-weight: 600;
-            line-height: 1.1;
+            line-height: 1.05;
             letter-spacing: -1px;
             text-decoration: none;
         }
@@ -1118,7 +1135,7 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-bg">
-            <img src="images/hero/hero-placeholder.jpg" alt="Women playing tennis at Westfield Indoor Tennis Club">
+            <iframe src="https://iframe.mediadelivery.net/embed/594666/acc0da9e-fe92-491d-9b05-c2c99955c3a3?autoplay=true&loop=true&muted=true&preload=true&controls=false&showSpeed=false&responsive=true" loading="eager" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
         <div class="hero-overlay"></div>
         <div class="container">
