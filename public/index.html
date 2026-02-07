@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Women of the Court | Westfield Indoor Tennis Club</title>
-    <meta name="description" content="Join the Women of the Court community at Westfield Indoor Tennis Club. Tennis programs, events, and connection for women of all skill levels in Westfield, NJ.">
+    <title>Tennis Together | Westfield Indoor Tennis Club</title>
+    <meta name="description" content="Join the Tennis Together community at Westfield Indoor Tennis Club. Tennis programs, events, and connection for women of all skill levels in Westfield, NJ.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Women of the Court - Elegant & Energetic */
+            /* Tennis Together - Elegant & Energetic */
             --primary: #2d5a4a;        /* Deep forest green */
             --primary-light: #3d7a64;
             --accent: #c9a87c;          /* Warm gold */
@@ -62,40 +62,63 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--gray-100);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
         }
 
         header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 16px;
-            padding-bottom: 16px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            transition: padding 0.4s ease;
+        }
+
+        header.scrolled .container {
+            padding-top: 14px;
+            padding-bottom: 14px;
         }
 
         .logo {
             display: flex;
             flex-direction: column;
+            text-decoration: none;
         }
 
         .logo-main {
             font-family: 'DM Sans', sans-serif;
             font-size: 24px;
             font-weight: 600;
-            color: var(--primary);
+            color: var(--white);
             text-decoration: none;
             letter-spacing: -0.5px;
+            transition: color 0.4s ease;
+        }
+
+        header.scrolled .logo-main {
+            color: var(--primary);
         }
 
         .logo-sub {
             font-size: 11px;
-            color: var(--gray-600);
+            color: rgba(255,255,255,0.7);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-top: 2px;
+            transition: color 0.4s ease;
+        }
+
+        header.scrolled .logo-sub {
+            color: var(--gray-600);
         }
 
         nav {
@@ -106,20 +129,33 @@
 
         nav a {
             padding: 10px 18px;
-            color: var(--gray-600);
+            color: rgba(255,255,255,0.85);
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
             border-radius: 8px;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         nav a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.1);
+        }
+
+        nav a.active {
+            color: var(--white);
+        }
+
+        header.scrolled nav a {
+            color: var(--gray-600);
+        }
+
+        header.scrolled nav a:hover {
             color: var(--primary);
             background: var(--gray-50);
         }
 
-        nav a.active {
+        header.scrolled nav a.active {
             color: var(--primary);
         }
 
@@ -142,10 +178,39 @@
             color: var(--white);
         }
 
+        .btn-primary::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23c8e636' stroke='%23a0b830' stroke-width='1'/%3E%3Cpath d='M3.5 10C8 10.5 12 13 14.5 17.5S17.5 27 16.5 31' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M28.5 22C24 21.5 20 19 17.5 14.5S14.5 5 15.5 1' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
+            flex-shrink: 0;
+        }
+
         .btn-primary:hover {
             background: var(--primary-light);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(45, 90, 74, 0.3);
+        }
+
+        nav .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+            transition: all 0.4s ease;
+        }
+
+        nav .btn-primary:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        header.scrolled nav .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        header.scrolled nav .btn-primary:hover {
+            background: var(--primary-light);
         }
 
         .btn-outline {
@@ -172,8 +237,12 @@
         .mobile-toggle span {
             width: 24px;
             height: 2px;
-            background: var(--gray-800);
+            background: var(--white);
             transition: all 0.3s ease;
+        }
+
+        header.scrolled .mobile-toggle span {
+            background: var(--gray-800);
         }
 
         /* ========== HERO ========== */
@@ -182,118 +251,191 @@
             display: flex;
             align-items: center;
             position: relative;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
             overflow: hidden;
-            padding-top: 80px;
         }
 
-        .hero::before {
-            content: '';
+        /* Ken Burns animated background */
+        .hero-bg {
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 80%;
-            height: 150%;
-            background: radial-gradient(ellipse, var(--accent-light) 0%, transparent 70%);
-            opacity: 0.4;
-            pointer-events: none;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: kenBurns 20s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+
+        @keyframes kenBurns {
+            0% {
+                transform: scale(1.05) translate(0, 0);
+            }
+            100% {
+                transform: scale(1.1) translate(-1%, -0.5%);
+            }
+        }
+
+        /* Green gradient overlay */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(180deg, rgba(45,90,74,0.5) 0%, rgba(45,90,74,0.2) 40%, rgba(45,90,74,0.35) 70%, rgba(30,60,50,0.8) 100%),
+                linear-gradient(90deg, rgba(30,60,50,0.6) 0%, transparent 60%);
         }
 
         .hero .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            padding-top: 120px;
+            padding-bottom: 80px;
         }
 
         .hero-content {
-            max-width: 560px;
+            max-width: 680px;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            background: var(--white);
-            border: 1px solid var(--gray-200);
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
             border-radius: 50px;
             font-size: 13px;
             font-weight: 500;
-            color: var(--gray-600);
-            margin-bottom: 24px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 28px;
         }
 
         .hero-badge span {
-            color: var(--primary);
+            color: var(--white);
+            font-weight: 600;
         }
 
         .hero h1 {
-            font-size: clamp(42px, 5vw, 64px);
-            color: var(--gray-900);
+            font-size: clamp(44px, 5.5vw, 72px);
+            color: var(--white);
             margin-bottom: 24px;
-            font-weight: 500;
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            text-decoration: none;
         }
 
-        .hero h1 em {
-            color: var(--primary);
-            font-style: normal;
+        .hero h1 .hero-highlight {
+            color: var(--white);
+            font-style: italic;
         }
 
         .hero p {
-            font-size: 18px;
-            color: var(--gray-600);
-            margin-bottom: 32px;
+            font-size: 19px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 36px;
             line-height: 1.7;
+            max-width: 540px;
         }
 
         .hero-buttons {
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
+            margin-bottom: 60px;
         }
 
-        .hero-image {
-            position: relative;
+        .hero-buttons .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 16px 32px;
+            font-size: 16px;
         }
 
-        .hero-image-main {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border-radius: 24px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        .hero-buttons .btn-primary:hover {
+            background: var(--gray-100);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-buttons .btn-outline {
+            color: var(--white);
+            border-color: rgba(255,255,255,0.4);
+            padding: 16px 32px;
+            font-size: 16px;
+        }
+
+        .hero-buttons .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: var(--white);
+            color: var(--white);
         }
 
         .hero-stats {
-            position: absolute;
-            bottom: -30px;
-            left: -30px;
-            background: var(--white);
-            padding: 24px 32px;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             display: flex;
-            gap: 32px;
+            gap: 48px;
         }
 
         .hero-stat {
-            text-align: center;
+            text-align: left;
         }
 
         .hero-stat-number {
             font-family: 'DM Sans', sans-serif;
-            font-size: 32px;
-            font-weight: 600;
-            color: var(--primary);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--white);
         }
 
         .hero-stat-label {
             font-size: 13px;
-            color: var(--gray-600);
+            color: rgba(255,255,255,0.6);
             margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .hero-stat + .hero-stat {
+            padding-left: 48px;
+            border-left: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Scroll indicator */
+        .hero-scroll {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.5);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
         }
 
         /* ========== SECTION STYLES ========== */
@@ -676,7 +818,7 @@
 
         /* ========== CTA SECTION ========== */
         .cta-section {
-            background: var(--cream);
+            background: linear-gradient(135deg, rgba(45,90,74,0.88) 0%, rgba(30,60,50,0.92) 100%), url('images/hero/tennis-balls-bg.jpg') center/cover no-repeat;
             text-align: center;
         }
 
@@ -685,15 +827,34 @@
             margin: 0 auto;
         }
 
+        .cta-section .section-label {
+            color: var(--accent);
+        }
+
+        .cta-section .section-label::before {
+            background: var(--accent);
+        }
+
         .cta-content h2 {
             font-size: 40px;
             margin-bottom: 20px;
+            color: var(--white);
         }
 
         .cta-content p {
             font-size: 18px;
-            color: var(--gray-600);
+            color: rgba(255,255,255,0.85);
             margin-bottom: 32px;
+        }
+
+        .cta-section .btn-outline {
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .cta-section .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary);
         }
 
         .cta-buttons {
@@ -814,7 +975,6 @@
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
-            .hero .container,
             .about-grid,
             .club-grid {
                 grid-template-columns: 1fr;
@@ -826,20 +986,16 @@
                 max-width: 100%;
             }
 
+            .hero p {
+                max-width: 100%;
+            }
+
             .hero-buttons {
                 justify-content: center;
             }
 
-            .hero-image {
-                order: -1;
-            }
-
             .hero-stats {
-                position: relative;
-                bottom: auto;
-                left: auto;
                 justify-content: center;
-                margin-top: 30px;
             }
 
             .events-grid {
@@ -869,16 +1025,32 @@
             }
 
             .hero {
-                min-height: auto;
-                padding: 120px 0 60px;
+                min-height: 100vh;
             }
 
             .hero h1 {
                 font-size: 36px;
             }
 
-            .hero-image-main {
-                height: 350px;
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .hero-stat + .hero-stat {
+                padding-left: 0;
+                border-left: none;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255,255,255,0.2);
+            }
+
+            .hero-stat {
+                text-align: center;
+            }
+
+            .hero-scroll {
+                display: none;
             }
 
             .about-img-accent {
@@ -923,7 +1095,7 @@
     <header>
         <div class="container">
             <a href="index.html" class="logo">
-                <span class="logo-main">Women of the Court</span>
+                <span class="logo-main">Tennis Together</span>
                 <span class="logo-sub">at Westfield Indoor Tennis Club</span>
             </a>
             <nav>
@@ -945,36 +1117,40 @@
 
     <!-- HERO -->
     <section class="hero">
+        <div class="hero-bg">
+            <img src="images/hero/hero-placeholder.jpg" alt="Women playing tennis at Westfield Indoor Tennis Club">
+        </div>
+        <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">
                     🎾 <span>Est. 1969</span> • Westfield, NJ
                 </div>
-                <h1>Where Women <em>Connect</em> Through Tennis</h1>
+                <h1>Where Women <span class="hero-highlight">Connect</span> Through Tennis</h1>
                 <p>Join a welcoming community of women who share a love for tennis. From beginners to competitive players, find your place on the court at Westfield Indoor Tennis Club.</p>
                 <div class="hero-buttons">
                     <a href="programs.html" class="btn btn-primary">Explore Programs</a>
                     <a href="events.html" class="btn btn-outline">Upcoming Events</a>
                 </div>
-            </div>
-            <div class="hero-image">
-                <!-- Placeholder - replace with actual image -->
-                <img src="images/hero/hero-placeholder.jpg" alt="Women playing tennis at Westfield Indoor Tennis Club" class="hero-image-main" onerror="this.style.background='linear-gradient(135deg, #2d5a4a 0%, #3d7a64 100%)'; this.style.display='block';">
                 <div class="hero-stats">
                     <div class="hero-stat">
-                        <div class="hero-stat-number">55+</div>
+                        <div class="hero-stat-number" data-target="55" data-suffix="+">0</div>
                         <div class="hero-stat-label">Years Strong</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-number">5</div>
+                        <div class="hero-stat-number" data-target="5">0</div>
                         <div class="hero-stat-label">Indoor Courts</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-number">100+</div>
+                        <div class="hero-stat-number" data-target="100" data-suffix="+">0</div>
                         <div class="hero-stat-label">Members</div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="hero-scroll-line"></div>
         </div>
     </section>
 
@@ -983,13 +1159,13 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-images">
-                    <img src="images/gallery/about-placeholder.jpg" alt="Women of the Court community" class="about-img-main" onerror="this.style.background='linear-gradient(135deg, #c9a87c 0%, #e8d4b8 100%)'; this.style.display='block';">
+                    <img src="images/gallery/about-placeholder.jpg" alt="Tennis Together community" class="about-img-main" onerror="this.style.background='linear-gradient(135deg, #c9a87c 0%, #e8d4b8 100%)'; this.style.display='block';">
                     <img src="images/gallery/about-accent.jpg" alt="Tennis at Westfield" class="about-img-accent" onerror="this.style.background='var(--primary)'; this.style.display='block';">
                 </div>
                 <div class="about-content">
                     <span class="section-label">Our Community</span>
                     <h2 class="section-title">More Than Just Tennis</h2>
-                    <p>Women of the Court is a community built on connection, encouragement, and a shared love of the game. Whether you're picking up a racket for the first time or competing on traveling teams, you'll find a supportive group of women ready to welcome you.</p>
+                    <p>Tennis Together is a community built on connection, encouragement, and a shared love of the game. Whether you're picking up a racket for the first time or competing on traveling teams, you'll find a supportive group of women ready to welcome you.</p>
                     <p>Based at Westfield Indoor Tennis Club—a trusted fixture in our community since 1969—we offer year-round programs, social events, and competitive opportunities for women of all skill levels.</p>
                     <div class="about-features">
                         <div class="about-feature">
@@ -1200,7 +1376,7 @@
         <div class="container">
             <div class="cta-content">
                 <span class="section-label">Ready to Play?</span>
-                <h2 class="section-title">Join Women of the Court</h2>
+                <h2 class="section-title">Join Tennis Together</h2>
                 <p>Whether you're looking for friendly matches, competitive league play, or just a great group of women to connect with—we'd love to have you.</p>
                 <div class="cta-buttons">
                     <a href="contact.html" class="btn btn-primary">Get Started</a>
@@ -1216,12 +1392,12 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="logo">
-                        <span class="logo-main">Women of the Court</span>
+                        <span class="logo-main">Tennis Together</span>
                         <span class="logo-sub">at Westfield Indoor Tennis Club</span>
                     </div>
                     <p>A community of women connected through tennis. All skill levels welcome.</p>
                     <div class="footer-social">
-                        <a href="#" aria-label="Facebook">
+                        <a href="https://www.facebook.com/profile.php?id=100063693697220" target="_blank" aria-label="Facebook">
                             <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                         </a>
                         <a href="#" aria-label="Instagram">
@@ -1269,7 +1445,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Women of the Court at Westfield Indoor Tennis Club. All rights reserved.</p>
+                <p>&copy; 2025 Tennis Together at Westfield Indoor Tennis Club. All rights reserved.</p>
                 <p>225 East Grove Street, Westfield, NJ 07090</p>
             </div>
         </div>
@@ -1288,15 +1464,13 @@
             });
         }
 
-        // Header scroll effect
+        // Header scroll effect - transparent to solid
         const header = document.querySelector('header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            if (window.scrollY > 80) {
+                header.classList.add('scrolled');
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
+                header.classList.remove('scrolled');
             }
         });
 
@@ -1343,6 +1517,46 @@
 
             eventsGrid.innerHTML = html;
         }
+
+        // ============ COUNTER ANIMATION ============
+        function animateCounters() {
+            const counters = document.querySelectorAll('.hero-stat-number[data-target]');
+            counters.forEach(counter => {
+                if (counter.dataset.animated) return;
+                const target = parseInt(counter.dataset.target);
+                const suffix = counter.dataset.suffix || '';
+                const duration = 1500;
+                const startTime = performance.now();
+
+                counter.dataset.animated = 'true';
+
+                function update(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Ease-out cubic
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.round(eased * target);
+                    counter.textContent = current + suffix;
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    }
+                }
+                requestAnimationFrame(update);
+            });
+        }
+
+        // Trigger when stats come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) statsObserver.observe(heroStats);
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {

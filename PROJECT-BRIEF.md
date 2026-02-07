@@ -1,4 +1,4 @@
-# Women of the Court | Westfield Indoor Tennis Club
+# Tennis Together | Westfield Indoor Tennis Club
 ## Project Brief
 
 ---
