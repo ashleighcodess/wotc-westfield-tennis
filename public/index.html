@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
     <style>
         @font-face {
             font-family: 'Aminute';
@@ -1140,16 +1141,16 @@
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge">
+                <div class="hero-badge hero-animate-badge">
                     🎾 <span>Est. 1969</span> • Westfield, NJ
                 </div>
-                <h1>Where Community <span class="hero-highlight">Connects</span> Through Tennis</h1>
-                <p>Join a welcoming community of players who share a love for tennis. From beginners to competitive players, find your place on the court at Westfield Indoor Tennis Club.</p>
-                <div class="hero-buttons">
+                <h1 class="hero-animate-title">Where Community <span class="hero-highlight">Connects</span> Through Tennis</h1>
+                <p class="hero-animate-subtitle">Join a welcoming community of players who share a love for tennis. From beginners to competitive players, find your place on the court at Westfield Indoor Tennis Club.</p>
+                <div class="hero-buttons hero-animate-cta">
                     <a href="programs.html" class="btn btn-primary">Explore Programs</a>
                     <a href="events.html" class="btn btn-outline">Upcoming Events</a>
                 </div>
-                <div class="hero-stats">
+                <div class="hero-stats" data-stagger>
                     <div class="hero-stat">
                         <div class="hero-stat-number" data-target="55" data-suffix="+">0</div>
                         <div class="hero-stat-label">Years Strong</div>
@@ -1179,7 +1180,7 @@
                     <img src="images/gallery/about-placeholder.jpg" alt="Tennis Together community" class="about-img-main" onerror="this.style.background='linear-gradient(135deg, #c9a87c 0%, #e8d4b8 100%)'; this.style.display='block';">
                     <img src="images/gallery/about-accent.jpg" alt="Tennis at Westfield" class="about-img-accent" onerror="this.style.background='var(--primary)'; this.style.display='block';">
                 </div>
-                <div class="about-content">
+                <div class="about-content" data-animate="fade-up">
                     <span class="section-label">Our Community</span>
                     <h2 class="section-title">More Than Just Tennis</h2>
                     <p>Tennis Together is a community built on connection, encouragement, and a shared love of the game. Whether you're picking up a racket for the first time or competing on traveling teams, you'll find a supportive community ready to welcome you.</p>
@@ -1216,7 +1217,7 @@
                 <h2 class="section-title">Upcoming Events</h2>
                 <p class="section-subtitle">Stay connected with our community through tennis events, socials, and more.</p>
             </div>
-            <div class="events-grid">
+            <div class="events-grid" data-stagger>
                 <div class="event-card">
                     <div class="event-image">
                         <div class="event-date">
@@ -1301,7 +1302,7 @@
                 <h2 class="section-title">Programs for Every Level</h2>
                 <p class="section-subtitle">From first-time players to competitive league teams, find your fit.</p>
             </div>
-            <div class="programs-grid">
+            <div class="programs-grid" data-stagger>
                 <a href="programs.html#beginners" class="program-card">
                     <div class="program-icon">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
@@ -1338,7 +1339,7 @@
     <section class="club-info">
         <div class="container">
             <div class="club-grid">
-                <div class="club-content">
+                <div class="club-content" data-animate="fade-up">
                     <span class="section-label">Our Home</span>
                     <h2 class="section-title">Westfield Indoor Tennis Club</h2>
                     <p>Our home since 1969, Westfield Indoor Tennis Club offers five pristine indoor DecoTurf courts with state-of-the-art LED lighting. Rain or shine, summer or winter—we play year-round.</p>
@@ -1391,7 +1392,7 @@
     <!-- CTA -->
     <section class="cta-section">
         <div class="container">
-            <div class="cta-content">
+            <div class="cta-content" data-animate="fade-up">
                 <span class="section-label">Ready to Play?</span>
                 <h2 class="section-title">Join Tennis Together</h2>
                 <p>Whether you're looking for friendly matches, competitive league play, or just a great community to connect with—we'd love to have you.</p>
@@ -1406,7 +1407,7 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-grid" data-animate="fade-up">
                 <div class="footer-brand">
                     <div class="logo">
                         <span class="logo-main">Tennis Together</span>
@@ -1582,5 +1583,6 @@
         });
     </script>
 
+<script src="js/animations.js"></script>
 </body>
 </html>

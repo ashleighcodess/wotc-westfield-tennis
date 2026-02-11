@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
     <style>
         @font-face {
             font-family: 'Aminute';
@@ -1078,7 +1079,7 @@
 
     <!-- Page Hero -->
     <section class="page-hero">
-        <div class="container page-hero-content">
+        <div class="container page-hero-content" data-animate="fade-up">
             <h1>Shop</h1>
             <p>Gear up with quality tennis equipment, branded apparel, and our favorite picks to elevate your game.</p>
         </div>
@@ -1114,7 +1115,7 @@
                 <h2>Tennis Equipment</h2>
                 <span class="products-count">8 products</span>
             </div>
-            <div class="products-grid">
+            <div class="products-grid" data-stagger>
                 <!-- Featured Product -->
                 <div class="product-card featured-product" data-category="equipment">
                     <div class="product-image">
@@ -1233,7 +1234,7 @@
                 <h2>WOTC Apparel</h2>
                 <p>Show your community pride with our exclusive branded gear.</p>
             </div>
-            <div class="apparel-grid">
+            <div class="apparel-grid" data-stagger>
                 <div class="apparel-card" data-category="apparel">
                     <div class="apparel-image">
                         <svg class="placeholder-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
@@ -1290,7 +1291,7 @@
                 <h2>Our Recommendations</h2>
                 <p>Products our coaches and members love. Tested on and off the court.</p>
             </div>
-            <div class="affiliate-grid">
+            <div class="affiliate-grid" data-stagger>
                 <div class="affiliate-card">
                     <div class="affiliate-image">
                         <svg class="placeholder-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
@@ -1356,7 +1357,7 @@
     <!-- Gift Cards Section -->
     <section class="gift-section">
         <div class="container">
-            <div class="gift-content">
+            <div class="gift-content" data-animate="fade-up">
                 <div class="gift-info">
                     <h2>Gift Cards</h2>
                     <p>Give the gift of tennis! Our gift cards can be used for programs, lessons, events, or shop purchases. Perfect for birthdays, holidays, or just because.</p>
@@ -1383,7 +1384,7 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <div class="cta-content">
+            <div class="cta-content" data-animate="fade-up">
                 <h2>Need Help Choosing?</h2>
                 <p>Our pros are happy to recommend the right equipment for your skill level and playing style. Stop by the club or send us a message.</p>
                 <a href="contact.html" class="btn btn-primary">Contact Us</a>
@@ -1591,5 +1592,6 @@
             });
         });
     </script>
+    <script src="js/animations.js"></script>
 </body>
 </html>

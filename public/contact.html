@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
     <style>
         @font-face {
             font-family: 'Aminute';
@@ -943,7 +944,7 @@
 
     <!-- Page Hero -->
     <section class="page-hero">
-        <div class="container page-hero-content">
+        <div class="container page-hero-content" data-animate="fade-up">
             <h1>Get in Touch</h1>
             <p>Have questions? Want to learn more about joining our community? We'd love to hear from you.</p>
         </div>
@@ -954,7 +955,7 @@
         <div class="container">
             <div class="contact-grid">
                 <!-- Contact Info -->
-                <div class="contact-info">
+                <div class="contact-info" data-animate="fade-left">
                     <h2>Contact Information</h2>
                     <p>Reach out anytime. Whether you're interested in joining, have questions about programs, or just want to say hello - we're here to help.</p>
 
@@ -1025,7 +1026,7 @@
                 </div>
 
                 <!-- Contact Form -->
-                <div class="contact-form-wrapper">
+                <div class="contact-form-wrapper" data-animate="fade-right">
                     <h3>Send Us a Message</h3>
                     <p>Fill out the form below and we'll get back to you within 24 hours.</p>
 
@@ -1091,7 +1092,7 @@
     </section>
 
     <!-- Map Section -->
-    <section class="map-section">
+    <section class="map-section" data-animate="fade-up">
         <div class="container">
             <div class="map-container">
                 <div class="map-header">
@@ -1121,7 +1122,7 @@
                 <h2>Frequently Asked Questions</h2>
                 <p>Quick answers to common questions about joining our community.</p>
             </div>
-            <div class="faq-grid">
+            <div class="faq-grid" data-stagger>
                 <div class="faq-item">
                     <h4>
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -1171,7 +1172,7 @@
     <!-- Newsletter Section -->
     <section class="newsletter-section">
         <div class="container">
-            <div class="newsletter-content">
+            <div class="newsletter-content" data-animate="fade-up">
                 <h2>Stay Connected</h2>
                 <p>Get the latest updates on events, programs, and community news delivered to your inbox.</p>
                 <form class="newsletter-form" id="newsletterForm">
@@ -1260,5 +1261,6 @@
             this.reset();
         });
     </script>
+    <script src="js/animations.js"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
     <style>
         @font-face {
             font-family: 'Aminute';
@@ -1088,14 +1089,14 @@
 
     <!-- Page Hero -->
     <section class="page-hero">
-        <div class="container page-hero-content">
+        <div class="container page-hero-content" data-animate="fade-up">
             <h1>Events & Community</h1>
             <p>Join us for tournaments, social gatherings, clinics, and more. There's always something happening at Tennis Together.</p>
         </div>
     </section>
 
     <!-- Announcements Banner -->
-    <section class="announcements-section">
+    <section class="announcements-section announce-animate">
         <div class="container">
             <div class="announcement-item">
                 <svg class="announcement-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1109,7 +1110,7 @@
     <!-- Events Filter -->
     <section class="events-filter">
         <div class="container">
-            <div class="filter-container">
+            <div class="filter-container" data-animate="fade-up">
                 <div class="filter-tabs">
                     <button class="filter-tab active" data-filter="all">All Events</button>
                     <button class="filter-tab" data-filter="tournament">Tournaments</button>
@@ -1134,7 +1135,7 @@
                 <h2>Upcoming Events</h2>
                 <span class="events-count">Showing 5 events</span>
             </div>
-            <div class="events-grid">
+            <div class="events-grid" data-stagger>
                 <!-- Featured Event -->
                 <div class="featured-event">
                     <div class="event-card-image">
@@ -1299,7 +1300,7 @@
                 <h2>Community Updates</h2>
                 <p>Stay in the loop with the latest news, tips, and announcements from our Facebook page.</p>
             </div>
-            <div class="facebook-feed-wrapper">
+            <div class="facebook-feed-wrapper" data-stagger>
                 <div id="fb-root"></div>
                 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v21.0"></script>
                 <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=100063693697220" data-tabs="timeline" data-width="500" data-height="700" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
@@ -1318,7 +1319,7 @@
                 <h2>Event Calendar</h2>
                 <p>Plan ahead and never miss an event.</p>
             </div>
-            <div class="calendar-widget">
+            <div class="calendar-widget" data-animate="fade-up">
                 <div class="calendar-nav">
                     <button class="calendar-nav-btn" aria-label="Previous month">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -1390,7 +1391,7 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <div class="cta-content">
+            <div class="cta-content" data-animate="fade-up">
                 <h2>Don't Miss Out</h2>
                 <p>Sign up for our newsletter to get event updates, early registration access, and exclusive member perks delivered to your inbox.</p>
                 <a href="contact.html" class="btn btn-white">Subscribe to Updates</a>
@@ -1646,5 +1647,6 @@
             document.querySelector('.events-count').textContent = `Showing ${visibleCount} events`;
         });
     </script>
+    <script src="js/animations.js"></script>
 </body>
 </html>

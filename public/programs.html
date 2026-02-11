@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
     <style>
         @font-face {
             font-family: 'Aminute';
@@ -1122,7 +1123,7 @@
 
     <!-- Page Hero -->
     <section class="page-hero">
-        <div class="container page-hero-content">
+        <div class="container page-hero-content" data-animate="fade-up">
             <h1>Tennis Programs</h1>
             <p>From beginner basics to competitive play, we have a program for every skill level and goal.</p>
         </div>
@@ -1149,7 +1150,7 @@
                 <h2>Weekly Clinics</h2>
                 <p>Join our expert-led group clinics designed to improve specific aspects of your game. Small groups ensure personalized attention while keeping the energy high.</p>
             </div>
-            <div class="clinics-grid">
+            <div class="clinics-grid" data-stagger>
                 <div class="clinic-card">
                     <div class="clinic-card-header beginner">
                         <span class="clinic-level">Beginner</span>
@@ -1248,7 +1249,7 @@
                 <h2>Private Lessons</h2>
                 <p>Get personalized coaching tailored to your specific goals. Our certified pros will help you achieve faster results with focused, individual attention.</p>
             </div>
-            <div class="lessons-grid">
+            <div class="lessons-grid" data-stagger>
                 <div class="lesson-card">
                     <div class="lesson-icon">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
@@ -1330,7 +1331,7 @@
                     </div>
                 </div>
             </div>
-            <div class="league-levels">
+            <div class="league-levels" data-stagger>
                 <div class="league-level-card">
                     <span class="league-level-badge level-25">2.5</span>
                     <h4>Social League</h4>
@@ -1358,7 +1359,7 @@
     <!-- Beginners Section -->
     <section class="program-section" id="beginners">
         <div class="container">
-            <div class="beginners-content">
+            <div class="beginners-content" data-animate="fade-up">
                 <div class="beginners-info">
                     <span class="section-badge">New to Tennis?</span>
                     <h3>Start Your Tennis Journey</h3>
@@ -1409,7 +1410,7 @@
     <!-- Pricing Section -->
     <section class="pricing-section" id="pricing">
         <div class="container">
-            <div class="pricing-content">
+            <div class="pricing-content" data-animate="fade-up">
                 <div class="pricing-header">
                     <h2>Program Pricing</h2>
                     <p>Transparent pricing with no hidden fees. All programs include court time and equipment use.</p>
@@ -1463,7 +1464,7 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <div class="cta-content">
+            <div class="cta-content" data-animate="fade-up">
                 <h2>Ready to Play?</h2>
                 <p>Have questions about which program is right for you? We're happy to help you find the perfect fit for your goals and schedule.</p>
                 <div class="cta-buttons">
@@ -1626,5 +1627,6 @@
             renderPricingTable();
         });
     </script>
+    <script src="js/animations.js"></script>
 </body>
 </html>
