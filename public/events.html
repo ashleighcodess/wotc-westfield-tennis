@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="../shared/css/animations.css">
     <style>
         @font-face {
             font-family: 'Aminute';
@@ -1139,7 +1139,7 @@
                 <!-- Featured Event -->
                 <div class="featured-event">
                     <div class="event-card-image">
-                        <img src="images/events/spring-mixer.jpg" alt="Spring Tennis Mixer" onerror="this.style.display='none'; this.parentElement.innerHTML+='<svg class=\'placeholder-icon\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'currentColor\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1\' d=\'M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z\'/><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1\' d=\'M21 12a9 9 0 11-18 0 9 9 0 0118 0z\'/></svg>';">
+                        <img src="../assets/springtennismixer.jpg" alt="Spring Tennis Mixer" onerror="this.style.display='none'; this.parentElement.innerHTML+='<svg class=\'placeholder-icon\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'currentColor\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1\' d=\'M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z\'/><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1\' d=\'M21 12a9 9 0 11-18 0 9 9 0 0118 0z\'/></svg>';">
                         <div class="event-date-badge">
                             <span class="month">Mar</span>
                             <span class="day">15</span>
@@ -1176,7 +1176,7 @@
                 <!-- Regular Event Cards -->
                 <div class="event-card" data-category="clinic">
                     <div class="event-card-image">
-                        <img src="images/events/serve-clinic.jpg" alt="Serve & Volley Clinic" onerror="this.style.display='none';">
+                        <img src="../assets/volley.jpg" alt="Serve & Volley Clinic" onerror="this.style.display='none';">
                         <div class="event-date-badge">
                             <span class="month">Mar</span>
                             <span class="day">8</span>
@@ -1402,6 +1402,10 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 16px 24px; margin-bottom: 40px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+                <p style="color: #9ca3af; font-size: 14px; margin: 0;">Part of the Westfield Indoor Tennis Club family of sites</p>
+                <a href="../club/index.html" style="color: #FFD54F; font-weight: 600; font-size: 14px; text-decoration: none;">Westfield Indoor Tennis Club &mdash; Our Home Facility &rarr;</a>
+            </div>
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>Tennis Together</h3>
@@ -1647,6 +1651,6 @@
             document.querySelector('.events-count').textContent = `Showing ${visibleCount} events`;
         });
     </script>
-    <script src="js/animations.js"></script>
+    <script src="../shared/js/animations.js"></script>
 </body>
 </html>
