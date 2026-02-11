@@ -226,12 +226,15 @@
         .status-hidden { background: var(--gray-100); color: var(--gray-600); }
         .status-hidden .status-dot { background: var(--gray-400); }
 
-        .toggle { position: relative; width: 44px; height: 24px; }
-        .toggle input { opacity: 0; width: 0; height: 0; }
-        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: var(--gray-300); border-radius: 24px; transition: 0.3s; }
-        .toggle-slider::before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.3s; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
-        .toggle input:checked + .toggle-slider { background: var(--green); }
-        .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+        .toggle { position: relative; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; }
+        .toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+        .toggle-slider { position: relative; width: 52px; height: 28px; background: #fecaca; border-radius: 28px; transition: 0.3s; border: 2px solid #f87171; flex-shrink: 0; }
+        .toggle-slider::before { position: absolute; content: ""; height: 20px; width: 20px; left: 2px; top: 2px; background: white; border-radius: 50%; transition: 0.3s; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
+        .toggle input:checked + .toggle-slider { background: var(--green); border-color: #059669; }
+        .toggle input:checked + .toggle-slider::before { transform: translateX(24px); }
+        .toggle-label { font-size: 13px; font-weight: 600; min-width: 28px; transition: color 0.3s; user-select: none; }
+        .toggle-label::after { content: 'OFF'; color: #ef4444; }
+        .toggle input:checked ~ .toggle-label::after { content: 'ON'; color: #059669; }
 
         .action-btns { display: flex; gap: 8px; }
         .action-btn { width: 32px; height: 32px; border: none; background: var(--gray-100); border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; color: var(--gray-600); }
@@ -282,11 +285,26 @@
         .empty-state p { color: var(--gray-500); font-size: 14px; }
 
         @media (max-width: 1024px) { .stats-grid, .quick-actions { grid-template-columns: repeat(2, 1fr); } }
+        .image-upload input[type="file"] { display: none; }
+        .image-upload-area { border: 2px dashed var(--gray-300); border-radius: 12px; padding: 28px; text-align: center; cursor: pointer; transition: all 0.2s ease; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .image-upload-area:hover { border-color: var(--primary); background: rgba(45, 90, 74, 0.03); }
+        .image-upload-area span { font-size: 14px; color: var(--gray-600); font-weight: 500; }
+        .image-preview { position: relative; display: inline-block; border-radius: 12px; overflow: hidden; border: 1px solid var(--gray-200); }
+        .image-preview img { max-width: 100%; max-height: 200px; display: block; border-radius: 12px; }
+        .image-remove { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 50%; background: rgba(0,0,0,0.6); color: white; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; }
+        .image-remove:hover { background: var(--red); }
+        .ann-thumb { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--gray-200); }
+
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .mobile-toggle svg { width: 24px; height: 24px; color: var(--gray-700); }
+
         @media (max-width: 768px) {
-            .sidebar { transform: translateX(-100%); }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.open { transform: translateX(0); }
             .main { margin-left: 0; }
             .stats-grid, .quick-actions { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
+            .mobile-toggle { display: block; }
         }
     </style>
 </head>
@@ -346,6 +364,9 @@
                 <h2 id="pageTitle">Overview</h2>
                 <p id="pageSubtitle">Welcome back, Marcy</p>
             </div>
+            <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
             <div class="topbar-actions">
                 <button class="btn btn-secondary" onclick="logout()">
                     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
@@ -709,6 +730,22 @@
                         <label>Message *</label>
                         <textarea id="announcementContent" rows="3" placeholder="e.g., Sign up for March events now" required></textarea>
                     </div>
+                    <div class="form-group">
+                        <label>Image (optional)</label>
+                        <div class="image-upload" id="announcementImageUpload">
+                            <input type="file" id="announcementImage" accept="image/*" onchange="previewAnnouncementImage(this)">
+                            <div class="image-upload-area" id="announcementImageArea" onclick="document.getElementById('announcementImage').click()">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:32px;height:32px;color:var(--gray-400)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                <span>Click to upload an image</span>
+                                <span style="font-size:12px;color:var(--gray-400)">JPG, PNG up to 2MB</span>
+                            </div>
+                            <div class="image-preview" id="announcementImagePreview" style="display:none">
+                                <img id="announcementImagePreviewImg" src="" alt="Preview">
+                                <button type="button" class="image-remove" onclick="removeAnnouncementImage()">&times;</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="announcementImageData">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('announcementModal')">Cancel</button>
@@ -800,6 +837,7 @@
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 showSection(link.dataset.section);
+                document.querySelector('.sidebar').classList.remove('open');
             });
         });
 
@@ -815,6 +853,10 @@
             // Reset form
             const form = document.querySelector(`#${modalId} form`);
             if (form) form.reset();
+            // Reset image upload if announcement modal
+            if (modalId === 'announcementModal') {
+                removeAnnouncementImage();
+            }
         }
 
         document.querySelectorAll('.modal-overlay').forEach(overlay => {
@@ -837,6 +879,7 @@
         // ========== LOGOUT ==========
         function logout() {
             sessionStorage.removeItem('wotc_authenticated');
+            sessionStorage.removeItem('wotc_auth_token');
             window.location.href = 'index.html';
         }
 
@@ -860,7 +903,7 @@
                     <td>
                         <label class="toggle">
                             <input type="checkbox" ${e.visible ? 'checked' : ''} onchange="toggleVisibility('events', '${e.id}')">
-                            <span class="toggle-slider"></span>
+                            <span class="toggle-slider"></span><span class="toggle-label"></span>
                         </label>
                     </td>
                     <td>
@@ -889,7 +932,7 @@
                     <td>
                         <label class="toggle">
                             <input type="checkbox" ${p.visible ? 'checked' : ''} onchange="toggleVisibility('programs', '${p.id}')">
-                            <span class="toggle-slider"></span>
+                            <span class="toggle-slider"></span><span class="toggle-label"></span>
                         </label>
                     </td>
                     <td>
@@ -917,7 +960,7 @@
                     <td>
                         <label class="toggle">
                             <input type="checkbox" ${p.visible ? 'checked' : ''} onchange="toggleVisibility('posts', '${p.id}')">
-                            <span class="toggle-slider"></span>
+                            <span class="toggle-slider"></span><span class="toggle-label"></span>
                         </label>
                     </td>
                     <td>
@@ -939,12 +982,15 @@
             const tbody = document.getElementById('announcementsTableBody');
             tbody.innerHTML = announcements.map(a => `
                 <tr data-id="${a.id}">
-                    <td><strong>${a.title}</strong><br><span style="color: var(--gray-500); font-size: 13px;">${a.content}</span></td>
+                    <td style="display:flex;align-items:center;gap:12px;">
+                        ${a.image ? '<img src="' + a.image + '" class="ann-thumb" alt="">' : ''}
+                        <div><strong>${a.title}</strong><br><span style="color: var(--gray-500); font-size: 13px;">${a.content}</span></div>
+                    </td>
                     <td>${formatDate(a.createdAt)}</td>
                     <td>
                         <label class="toggle">
                             <input type="checkbox" ${a.visible ? 'checked' : ''} onchange="toggleVisibility('announcements', '${a.id}')">
-                            <span class="toggle-slider"></span>
+                            <span class="toggle-slider"></span><span class="toggle-label"></span>
                         </label>
                     </td>
                     <td>
@@ -967,12 +1013,12 @@
             tbody.innerHTML = products.map(p => `
                 <tr data-id="${p.id}">
                     <td><strong>${p.title}</strong></td>
-                    <td>$${p.price}${p.salePrice ? ' <del style="color:var(--gray-400)">$' + p.salePrice + '</del>' : ''}</td>
+                    <td>${p.salePrice ? '$' + p.salePrice + ' <del style="color:var(--gray-400)">$' + p.price + '</del>' : '$' + p.price}</td>
                     <td>${p.category.charAt(0).toUpperCase() + p.category.slice(1)}</td>
                     <td>
                         <label class="toggle">
                             <input type="checkbox" ${p.visible ? 'checked' : ''} onchange="toggleVisibility('products', '${p.id}')">
-                            <span class="toggle-slider"></span>
+                            <span class="toggle-slider"></span><span class="toggle-label"></span>
                         </label>
                     </td>
                     <td>
@@ -995,6 +1041,32 @@
             document.getElementById('statPrograms').textContent = stats.totalPrograms;
             document.getElementById('statProducts').textContent = stats.totalProducts;
             document.getElementById('statPosts').textContent = stats.totalPosts;
+        }
+
+        // ========== ANNOUNCEMENT IMAGE HELPERS ==========
+        function previewAnnouncementImage(input) {
+            const file = input.files[0];
+            if (!file) return;
+            if (file.size > 2 * 1024 * 1024) {
+                showToast('Image must be under 2MB', 'error');
+                input.value = '';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('announcementImageData').value = e.target.result;
+                document.getElementById('announcementImagePreviewImg').src = e.target.result;
+                document.getElementById('announcementImagePreview').style.display = 'inline-block';
+                document.getElementById('announcementImageArea').style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeAnnouncementImage() {
+            document.getElementById('announcementImageData').value = '';
+            document.getElementById('announcementImage').value = '';
+            document.getElementById('announcementImagePreview').style.display = 'none';
+            document.getElementById('announcementImageArea').style.display = 'flex';
         }
 
         function renderAll() {
@@ -1075,6 +1147,14 @@
                 document.getElementById('announcementId').value = ann.id;
                 document.getElementById('announcementTitle').value = ann.title;
                 document.getElementById('announcementContent').value = ann.content || '';
+                if (ann.image) {
+                    document.getElementById('announcementImageData').value = ann.image;
+                    document.getElementById('announcementImagePreviewImg').src = ann.image;
+                    document.getElementById('announcementImagePreview').style.display = 'inline-block';
+                    document.getElementById('announcementImageArea').style.display = 'none';
+                } else {
+                    removeAnnouncementImage();
+                }
                 openModal('announcementModal');
             }
         }
@@ -1176,6 +1256,7 @@
             const data = {
                 title: document.getElementById('announcementTitle').value,
                 content: document.getElementById('announcementContent').value,
+                image: document.getElementById('announcementImageData').value || '',
                 visible: true
             };
             if (id) {
@@ -1216,7 +1297,18 @@
         });
 
         // ========== INIT ==========
-        renderAll();
+        (async function() {
+            // Show loading state
+            document.querySelector('.content').style.opacity = '0.5';
+            try {
+                await WOTCData.init();
+            } catch (err) {
+                console.error('Failed to load data:', err);
+                showToast('Failed to load data from server', 'error');
+            }
+            document.querySelector('.content').style.opacity = '1';
+            renderAll();
+        })();
     </script>
 </body>
 </html>

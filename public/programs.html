@@ -1316,7 +1316,7 @@
             <div class="section-header">
                 <span class="section-badge">Competitive Play</span>
                 <h2>Tennis Leagues</h2>
-                <p>Put your skills to the test in our women's leagues. Weekly matches, standings, and end-of-season playoffs make for exciting competition.</p>
+                <p>Put your skills to the test in our community leagues. Weekly matches, standings, and end-of-season playoffs make for exciting competition.</p>
             </div>
             <div class="leagues-intro">
                 <div class="leagues-intro-content">
@@ -1491,7 +1491,7 @@
                 <div class="footer-brand">
                     <h3>Tennis Together</h3>
                     <p class="subtitle">at Westfield Indoor Tennis Club</p>
-                    <p>Building a community of women who share a passion for tennis, friendship, and healthy living.</p>
+                    <p>Building a community of players who share a passion for tennis, friendship, and healthy living.</p>
                 </div>
                 <div class="footer-column">
                     <h4>Quick Links</h4>
@@ -1521,7 +1521,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Tennis Together. All rights reserved.</p>
+                <p>&copy; 2026 Tennis Together. All rights reserved.</p>
                 <div class="footer-social">
                     <a href="https://www.facebook.com/profile.php?id=100063693697220" target="_blank" aria-label="Facebook">
                         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.77,7.46H14.5v-1.9c0-.9.6-1.1,1-1.1h3V.5h-4.33C10.24.5,9.5,3.44,9.5,5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4Z"/></svg>
@@ -1620,7 +1620,8 @@
         }
 
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
+            await SiteData.init();
             renderClinics();
             renderPricingTable();
         });

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tennis Together | Westfield Indoor Tennis Club</title>
-    <meta name="description" content="Join the Tennis Together community at Westfield Indoor Tennis Club. Tennis programs, events, and connection for women of all skill levels in Westfield, NJ.">
+    <meta name="description" content="Join the Tennis Together community at Westfield Indoor Tennis Club. Tennis programs, events, and connection for players of all skill levels in Westfield, NJ.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1143,8 +1143,8 @@
                 <div class="hero-badge">
                     🎾 <span>Est. 1969</span> • Westfield, NJ
                 </div>
-                <h1>Where Women <span class="hero-highlight">Connect</span> Through Tennis</h1>
-                <p>Join a welcoming community of women who share a love for tennis. From beginners to competitive players, find your place on the court at Westfield Indoor Tennis Club.</p>
+                <h1>Where Community <span class="hero-highlight">Connects</span> Through Tennis</h1>
+                <p>Join a welcoming community of players who share a love for tennis. From beginners to competitive players, find your place on the court at Westfield Indoor Tennis Club.</p>
                 <div class="hero-buttons">
                     <a href="programs.html" class="btn btn-primary">Explore Programs</a>
                     <a href="events.html" class="btn btn-outline">Upcoming Events</a>
@@ -1182,8 +1182,8 @@
                 <div class="about-content">
                     <span class="section-label">Our Community</span>
                     <h2 class="section-title">More Than Just Tennis</h2>
-                    <p>Tennis Together is a community built on connection, encouragement, and a shared love of the game. Whether you're picking up a racket for the first time or competing on traveling teams, you'll find a supportive group of women ready to welcome you.</p>
-                    <p>Based at Westfield Indoor Tennis Club—a trusted fixture in our community since 1969—we offer year-round programs, social events, and competitive opportunities for women of all skill levels.</p>
+                    <p>Tennis Together is a community built on connection, encouragement, and a shared love of the game. Whether you're picking up a racket for the first time or competing on traveling teams, you'll find a supportive community ready to welcome you.</p>
+                    <p>Based at Westfield Indoor Tennis Club—a trusted fixture in our community since 1969—we offer year-round programs, social events, and competitive opportunities for players of all skill levels.</p>
                     <div class="about-features">
                         <div class="about-feature">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -1272,7 +1272,7 @@
                     </div>
                     <div class="event-content">
                         <span class="event-tag">Tournament</span>
-                        <h3>Women's Doubles Tournament</h3>
+                        <h3>Doubles Tournament</h3>
                         <p>Compete in our friendly spring doubles tournament.</p>
                         <div class="event-meta">
                             <span>
@@ -1394,7 +1394,7 @@
             <div class="cta-content">
                 <span class="section-label">Ready to Play?</span>
                 <h2 class="section-title">Join Tennis Together</h2>
-                <p>Whether you're looking for friendly matches, competitive league play, or just a great group of women to connect with—we'd love to have you.</p>
+                <p>Whether you're looking for friendly matches, competitive league play, or just a great community to connect with—we'd love to have you.</p>
                 <div class="cta-buttons">
                     <a href="contact.html" class="btn btn-primary">Get Started</a>
                     <a href="tel:9082339480" class="btn btn-outline">Call (908) 233-9480</a>
@@ -1412,7 +1412,7 @@
                         <span class="logo-main">Tennis Together</span>
                         <span class="logo-sub">at Westfield Indoor Tennis Club</span>
                     </div>
-                    <p>A community of women connected through tennis. All skill levels welcome.</p>
+                    <p>A community connected through tennis. All skill levels welcome.</p>
                     <div class="footer-social">
                         <a href="https://www.facebook.com/profile.php?id=100063693697220" target="_blank" aria-label="Facebook">
                             <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -1462,7 +1462,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Tennis Together at Westfield Indoor Tennis Club. All rights reserved.</p>
+                <p>&copy; 2026 Tennis Together at Westfield Indoor Tennis Club. All rights reserved.</p>
                 <p>225 East Grove Street, Westfield, NJ 07090</p>
             </div>
         </div>
@@ -1576,7 +1576,8 @@
         if (heroStats) statsObserver.observe(heroStats);
 
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
+            await SiteData.init();
             renderUpcomingEvents();
         });
     </script>

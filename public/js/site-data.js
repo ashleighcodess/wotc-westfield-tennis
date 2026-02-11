@@ -1,25 +1,27 @@
 /**
  * WOTC Public Site Data Reader
- * Reads content from localStorage (synced with dashboard)
+ * Fetches content from API, reads from local cache
  */
 
 const SiteData = {
-    // Storage keys (must match dashboard data.js)
-    KEYS: {
-        events: 'wotc_events',
-        programs: 'wotc_programs',
-        posts: 'wotc_posts',
-        announcements: 'wotc_announcements',
-        products: 'wotc_products'
+    // Local cache
+    _cache: {
+        events: [],
+        programs: [],
+        posts: [],
+        announcements: [],
+        products: []
     },
 
-    // Default data (same as dashboard, used if localStorage is empty)
+    _ready: false,
+
+    // Default data (fallback if API is unreachable)
     defaults: {
         events: [
             {
                 id: 'evt-001',
                 title: 'Spring Tennis Mixer & Social',
-                date: '2025-03-15',
+                date: '2026-03-15',
                 time: '10:00 AM - 2:00 PM',
                 description: 'Kick off the spring season with our biggest social event! Mixed doubles round-robin, brunch, and prizes.',
                 price: 45,
@@ -33,7 +35,7 @@ const SiteData = {
             {
                 id: 'evt-002',
                 title: 'Serve & Volley Clinic',
-                date: '2025-03-08',
+                date: '2026-03-08',
                 time: '9:00 AM - 11:00 AM',
                 description: 'Master the art of serve and volley with Coach Lexi.',
                 price: 35,
@@ -46,8 +48,8 @@ const SiteData = {
             },
             {
                 id: 'evt-003',
-                title: "Women's Doubles Tournament",
-                date: '2025-03-22',
+                title: "Doubles Tournament",
+                date: '2026-03-22',
                 time: '8:00 AM - 4:00 PM',
                 description: 'Competitive doubles tournament for 3.5+ level players.',
                 price: 60,
@@ -180,30 +182,43 @@ const SiteData = {
         ]
     },
 
-    // Initialize with defaults if localStorage is empty
-    init() {
-        Object.keys(this.KEYS).forEach(type => {
-            if (!localStorage.getItem(this.KEYS[type])) {
-                localStorage.setItem(this.KEYS[type], JSON.stringify(this.defaults[type]));
-            }
-        });
+    // Initialize: fetch from API, seed if needed, fallback to defaults
+    async init() {
+        try {
+            // Try to seed (no-op if already seeded)
+            await fetch('/api/seed', { method: 'POST' }).catch(() => {});
+
+            // Fetch all types from API
+            const types = Object.keys(this._cache);
+            const results = await Promise.all(
+                types.map(async (type) => {
+                    const res = await fetch(`/api/data?type=${type}`);
+                    if (!res.ok) throw new Error(`Failed to fetch ${type}`);
+                    return res.json();
+                })
+            );
+            types.forEach((type, i) => {
+                this._cache[type] = results[i] || [];
+            });
+        } catch (err) {
+            console.warn('API fetch failed, using defaults:', err);
+            Object.keys(this.defaults).forEach(type => {
+                this._cache[type] = this.defaults[type];
+            });
+        }
+        this._ready = true;
+        console.log('SiteData initialized');
     },
 
     // Get all visible items of a type
     getAll(type) {
-        // Initialize if needed
-        if (!localStorage.getItem(this.KEYS[type])) {
-            this.init();
-        }
-        const data = localStorage.getItem(this.KEYS[type]);
-        const items = data ? JSON.parse(data) : [];
+        const items = this._cache[type] || [];
         return items.filter(item => item.visible !== false);
     },
 
     // Get single item by ID
     getById(type, id) {
-        const data = localStorage.getItem(this.KEYS[type]);
-        const items = data ? JSON.parse(data) : [];
+        const items = this._cache[type] || [];
         return items.find(item => item.id === id && item.visible !== false);
     },
 
@@ -265,7 +280,6 @@ const SiteData = {
 
     // ============ UTILITY FUNCTIONS ============
 
-    // Format date for display
     formatDate(dateStr) {
         const date = new Date(dateStr);
         return {
@@ -277,13 +291,11 @@ const SiteData = {
         };
     },
 
-    // Format price
     formatPrice(price) {
         if (price === 0) return 'Free';
         return '$' + parseFloat(price).toFixed(price % 1 === 0 ? 0 : 2);
     },
 
-    // Get relative date
     getRelativeDate(dateStr) {
         const date = new Date(dateStr);
         const now = new Date();
@@ -296,7 +308,6 @@ const SiteData = {
         return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     },
 
-    // Category display name
     getCategoryLabel(category) {
         const labels = {
             tournament: 'Tournament',

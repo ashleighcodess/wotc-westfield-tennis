@@ -1,255 +1,135 @@
 /**
  * WOTC Dashboard Data Manager
- * Handles CRUD operations for all content types
- * Uses localStorage for browser-based storage (can be swapped for API calls in production)
+ * Uses local cache + API sync pattern
+ * Reads are synchronous from cache, writes sync to server in background
  */
 
 const WOTCData = {
-    // Storage keys
-    KEYS: {
-        events: 'wotc_events',
-        programs: 'wotc_programs',
-        posts: 'wotc_posts',
-        announcements: 'wotc_announcements',
-        products: 'wotc_products'
+    // Local cache (replaces localStorage)
+    _cache: {
+        events: [],
+        programs: [],
+        posts: [],
+        announcements: [],
+        products: []
     },
 
-    // Default data (loaded on first run)
-    defaults: {
-        events: [
-            {
-                id: 'evt-001',
-                title: 'Spring Tennis Mixer & Social',
-                date: '2025-03-15',
-                time: '10:00 AM - 2:00 PM',
-                description: 'Kick off the spring season with our biggest social event! Mixed doubles round-robin, brunch, and prizes.',
-                price: 45,
-                capacity: 48,
-                registered: 24,
-                category: 'social',
-                stripeLink: '',
-                featured: true,
-                visible: true,
-                createdAt: new Date().toISOString()
-            },
-            {
-                id: 'evt-002',
-                title: 'Serve & Volley Clinic',
-                date: '2025-03-08',
-                time: '9:00 AM - 11:00 AM',
-                description: 'Master the art of serve and volley with Coach Lexi.',
-                price: 35,
-                capacity: 12,
-                registered: 4,
-                category: 'clinic',
-                stripeLink: '',
-                featured: false,
-                visible: true,
-                createdAt: new Date().toISOString()
-            },
-            {
-                id: 'evt-003',
-                title: 'Women\'s Doubles Tournament',
-                date: '2025-03-22',
-                time: '8:00 AM - 4:00 PM',
-                description: 'Competitive doubles tournament for 3.5+ level players.',
-                price: 60,
-                capacity: 24,
-                registered: 12,
-                category: 'tournament',
-                stripeLink: '',
-                featured: false,
-                visible: true,
-                createdAt: new Date().toISOString()
-            }
-        ],
-        programs: [
-            {
-                id: 'prg-001',
-                title: 'Foundations Clinic',
-                level: 'beginner',
-                schedule: 'Tuesdays & Thursdays',
-                time: '9:00 AM - 10:30 AM',
-                description: 'Build your tennis fundamentals.',
-                price: 35,
-                priceType: 'per session',
-                maxPlayers: 8,
-                stripeLink: '',
-                visible: true,
-                createdAt: new Date().toISOString()
-            },
-            {
-                id: 'prg-002',
-                title: 'Stroke Development',
-                level: 'intermediate',
-                schedule: 'Mondays & Wednesdays',
-                time: '10:00 AM - 11:30 AM',
-                description: 'Refine your technique and develop consistency.',
-                price: 45,
-                priceType: 'per session',
-                maxPlayers: 6,
-                stripeLink: '',
-                visible: true,
-                createdAt: new Date().toISOString()
-            },
-            {
-                id: 'prg-003',
-                title: 'Private Lesson',
-                level: 'all',
-                schedule: 'By Appointment',
-                time: '60 minutes',
-                description: 'One-on-one instruction tailored to your goals.',
-                price: 85,
-                priceType: 'per session',
-                maxPlayers: 1,
-                stripeLink: '',
-                visible: true,
-                createdAt: new Date().toISOString()
-            }
-        ],
-        posts: [
-            {
-                id: 'post-001',
-                title: 'Spring Schedule Released',
-                type: 'announcement',
-                content: 'Our spring program schedule is now available!',
-                videoUrl: '',
-                affiliateLinks: [],
-                author: 'Marcy Borr',
-                visible: true,
-                createdAt: new Date().toISOString()
-            },
-            {
-                id: 'post-002',
-                title: 'Court Resurfacing Complete',
-                type: 'news',
-                content: 'Courts 3 and 4 have been freshly resurfaced.',
-                videoUrl: '',
-                affiliateLinks: [],
-                author: 'Marcy Borr',
-                visible: true,
-                createdAt: new Date().toISOString()
-            }
-        ],
-        announcements: [
-            {
-                id: 'ann-001',
-                title: 'Spring Registration Now Open!',
-                content: 'Sign up for our March events.',
-                link: '/events.html',
-                linkText: 'View Events',
-                type: 'banner',
-                visible: true,
-                createdAt: new Date().toISOString()
-            }
-        ],
-        products: [
-            {
-                id: 'prod-001',
-                title: 'WOTC Performance Tee',
-                category: 'apparel',
-                description: 'Moisture-wicking fabric with embroidered logo.',
-                price: 35,
-                salePrice: null,
-                image: '',
-                stripeLink: '',
-                featured: true,
-                visible: true,
-                createdAt: new Date().toISOString()
-            },
-            {
-                id: 'prod-002',
-                title: 'WOTC Tennis Skirt',
-                category: 'apparel',
-                description: 'Flattering A-line cut with built-in shorts.',
-                price: 48,
-                salePrice: null,
-                image: '',
-                stripeLink: '',
-                featured: false,
-                visible: true,
-                createdAt: new Date().toISOString()
-            },
-            {
-                id: 'prod-003',
-                title: 'Penn Championship Balls',
-                category: 'equipment',
-                description: 'Extra duty felt. 3-pack.',
-                price: 4.99,
-                salePrice: null,
-                image: '',
-                stripeLink: '',
-                featured: false,
-                visible: true,
-                createdAt: new Date().toISOString()
-            }
-        ]
+    _ready: false,
+
+    // Get auth token from sessionStorage
+    _getToken() {
+        return sessionStorage.getItem('wotc_auth_token') || '';
     },
 
-    // Initialize data (load from storage or use defaults)
-    init() {
-        Object.keys(this.KEYS).forEach(type => {
-            if (!localStorage.getItem(this.KEYS[type])) {
-                localStorage.setItem(this.KEYS[type], JSON.stringify(this.defaults[type]));
-            }
+    // API helper for reads
+    async _apiFetch(type) {
+        const res = await fetch(`/api/data?type=${type}`);
+        if (!res.ok) throw new Error(`Failed to fetch ${type}`);
+        return res.json();
+    },
+
+    // API helper for writes (requires auth)
+    async _apiWrite(type, action, data, id) {
+        const body = { type, action };
+        if (data !== undefined) body.data = data;
+        if (id !== undefined) body.id = id;
+
+        const res = await fetch('/api/data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this._getToken()}`
+            },
+            body: JSON.stringify(body)
         });
-        console.log('WOTC Data initialized');
+
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            console.error('API write failed:', err);
+            if (res.status === 401) {
+                sessionStorage.removeItem('wotc_auth_token');
+                sessionStorage.removeItem('wotc_authenticated');
+                window.location.href = 'index.html';
+            }
+            throw new Error(err.error || 'API write failed');
+        }
+
+        return res.json();
     },
 
-    // Generate unique ID
+    // Initialize: fetch all data from API into cache
+    async init() {
+        const types = Object.keys(this._cache);
+        const results = await Promise.all(types.map(t => this._apiFetch(t)));
+        types.forEach((type, i) => {
+            this._cache[type] = results[i] || [];
+        });
+        this._ready = true;
+        console.log('WOTC Data initialized from API');
+    },
+
+    // Generate unique ID (used as fallback, server also generates)
     generateId(prefix) {
         return `${prefix}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     },
 
     // ============ GENERIC CRUD OPERATIONS ============
 
-    // Get all items of a type
     getAll(type) {
-        const data = localStorage.getItem(this.KEYS[type]);
-        return data ? JSON.parse(data) : [];
+        return this._cache[type] || [];
     },
 
-    // Get single item by ID
     getById(type, id) {
         const items = this.getAll(type);
         return items.find(item => item.id === id);
     },
 
-    // Create new item
     create(type, data) {
-        const items = this.getAll(type);
+        // Optimistic: add to cache immediately with temp ID
         const prefix = type.substring(0, 3);
         const newItem = {
             ...data,
             id: this.generateId(prefix),
             createdAt: new Date().toISOString()
         };
-        items.unshift(newItem); // Add to beginning
-        localStorage.setItem(this.KEYS[type], JSON.stringify(items));
+        this._cache[type].unshift(newItem);
+
+        // Sync to server
+        this._apiWrite(type, 'create', data).then(res => {
+            if (res.item) {
+                // Replace temp item with server-generated one
+                const idx = this._cache[type].findIndex(i => i.id === newItem.id);
+                if (idx !== -1) this._cache[type][idx] = res.item;
+            }
+        }).catch(err => console.error('Sync create failed:', err));
+
         return newItem;
     },
 
-    // Update existing item
     update(type, id, data) {
         const items = this.getAll(type);
         const index = items.findIndex(item => item.id === id);
         if (index !== -1) {
             items[index] = { ...items[index], ...data, updatedAt: new Date().toISOString() };
-            localStorage.setItem(this.KEYS[type], JSON.stringify(items));
+            this._apiWrite(type, 'update', data, id)
+                .catch(err => console.error('Sync update failed:', err));
             return items[index];
         }
         return null;
     },
 
-    // Delete item
     delete(type, id) {
         const items = this.getAll(type);
         const filtered = items.filter(item => item.id !== id);
-        localStorage.setItem(this.KEYS[type], JSON.stringify(filtered));
-        return filtered.length < items.length;
+        const deleted = filtered.length < items.length;
+        if (deleted) {
+            this._cache[type] = filtered;
+            this._apiWrite(type, 'delete', undefined, id)
+                .catch(err => console.error('Sync delete failed:', err));
+        }
+        return deleted;
     },
 
-    // Toggle visibility
     toggleVisibility(type, id) {
         const item = this.getById(type, id);
         if (item) {
@@ -360,31 +240,24 @@ const WOTCData = {
         };
     },
 
-    // ============ RESET DATA ============
+    // ============ EXPORT/IMPORT ============
 
-    resetAll() {
-        Object.keys(this.KEYS).forEach(type => {
-            localStorage.setItem(this.KEYS[type], JSON.stringify(this.defaults[type]));
-        });
-        console.log('All data reset to defaults');
-    },
-
-    // Export all data (for backup)
     exportAll() {
         const data = {};
-        Object.keys(this.KEYS).forEach(type => {
+        Object.keys(this._cache).forEach(type => {
             data[type] = this.getAll(type);
         });
         return JSON.stringify(data, null, 2);
     },
 
-    // Import data (from backup)
     importAll(jsonString) {
         try {
             const data = JSON.parse(jsonString);
-            Object.keys(this.KEYS).forEach(type => {
+            Object.keys(this._cache).forEach(type => {
                 if (data[type]) {
-                    localStorage.setItem(this.KEYS[type], JSON.stringify(data[type]));
+                    this._cache[type] = data[type];
+                    this._apiWrite(type, 'save', data[type])
+                        .catch(err => console.error('Import sync failed for', type, err));
                 }
             });
             return true;
@@ -394,6 +267,3 @@ const WOTCData = {
         }
     }
 };
-
-// Initialize on load
-WOTCData.init();

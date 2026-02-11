@@ -227,7 +227,7 @@
             </form>
 
             <div class="login-footer">
-                <a href="mailto:support@example.com">Forgot password? Contact support</a>
+                <a href="mailto:clubinfo@westfieldindoortennis.com">Forgot password? Contact support</a>
             </div>
         </div>
 
@@ -240,25 +240,42 @@
     </div>
 
     <script>
-        // Simple authentication (for demo - use proper auth in production)
-        const DEMO_PASSWORD = 'wotc2025';
-
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
+            const submitBtn = this.querySelector('button[type="submit"]');
 
-            if (password === DEMO_PASSWORD) {
-                // Set session
-                sessionStorage.setItem('wotc_authenticated', 'true');
-                // Redirect to dashboard
-                window.location.href = 'admin.html';
-            } else {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Signing in...';
+
+            try {
+                const res = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.token) {
+                    sessionStorage.setItem('wotc_authenticated', 'true');
+                    sessionStorage.setItem('wotc_auth_token', data.token);
+                    window.location.href = 'admin.html';
+                } else {
+                    errorMessage.textContent = data.error || 'Invalid password. Please try again.';
+                    errorMessage.classList.add('show');
+                    document.getElementById('password').value = '';
+                    document.getElementById('password').focus();
+                }
+            } catch (err) {
+                errorMessage.textContent = 'Connection error. Please try again.';
                 errorMessage.classList.add('show');
-                document.getElementById('password').value = '';
-                document.getElementById('password').focus();
             }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Sign In';
         });
 
         // Clear error on input

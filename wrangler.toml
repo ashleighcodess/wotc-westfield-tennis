@@ -1,0 +1,6 @@
+name = "wotc-westfield-tennis"
+compatibility_date = "2024-09-23"
+
+[[kv_namespaces]]
+binding = "WOTC_DATA"
+id = "YOUR_KV_NAMESPACE_ID"

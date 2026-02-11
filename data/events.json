@@ -3,7 +3,7 @@
     {
       "id": "evt-001",
       "title": "Spring Tennis Mixer & Social",
-      "date": "2025-03-15",
+      "date": "2026-03-15",
       "time": "10:00 AM - 2:00 PM",
       "description": "Kick off the spring season with our biggest social event! Mixed doubles round-robin, brunch, and prizes. All skill levels welcome.",
       "price": 45,
@@ -18,7 +18,7 @@
     {
       "id": "evt-002",
       "title": "Serve & Volley Clinic",
-      "date": "2025-03-08",
+      "date": "2026-03-08",
       "time": "9:00 AM - 11:00 AM",
       "description": "Master the art of serve and volley with Coach Lexi. Focus on technique, footwork, and net game strategy.",
       "price": 35,
@@ -32,8 +32,8 @@
     },
     {
       "id": "evt-003",
-      "title": "Women's Doubles Tournament",
-      "date": "2025-03-22",
+      "title": "Doubles Tournament",
+      "date": "2026-03-22",
       "time": "8:00 AM - 4:00 PM",
       "description": "Competitive doubles tournament for 3.5+ level players. Prizes for winners and finalists. Lunch included.",
       "price": 60,
@@ -48,7 +48,7 @@
     {
       "id": "evt-004",
       "title": "Wine & Tennis Night",
-      "date": "2025-03-29",
+      "date": "2026-03-29",
       "time": "6:00 PM - 9:00 PM",
       "description": "An evening of casual tennis, wine tasting, and socializing. No partner needed - we'll match you up!",
       "price": 30,
