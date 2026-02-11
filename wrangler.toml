@@ -1,6 +1,7 @@
 name = "wotc-westfield-tennis"
 compatibility_date = "2024-09-23"
+pages_build_output_dir = "."
 
 [[kv_namespaces]]
 binding = "WOTC_DATA"
-id = "YOUR_KV_NAMESPACE_ID"
+id = "c400d361d36d4111bc862c00a5f699f5"
