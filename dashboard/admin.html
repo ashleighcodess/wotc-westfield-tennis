@@ -284,6 +284,18 @@
         .empty-state { text-align: center; padding: 60px 24px; }
         .empty-state p { color: var(--gray-500); font-size: 14px; }
 
+        .affiliate-links-section { margin-top: 4px; }
+        .affiliate-links-section label { display: block; font-size: 14px; font-weight: 500; color: var(--gray-700); margin-bottom: 6px; }
+        .affiliate-link-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; margin-bottom: 8px; align-items: start; }
+        .affiliate-link-row input { padding: 10px 12px; font-size: 13px; border: 1px solid var(--gray-300); border-radius: 8px; font-family: inherit; }
+        .affiliate-link-row input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45, 90, 74, 0.1); }
+        .affiliate-remove-btn { width: 36px; height: 36px; border: none; background: var(--red-light); color: var(--red); border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; margin-top: 1px; }
+        .affiliate-remove-btn:hover { background: var(--red); color: white; }
+        .affiliate-remove-btn svg { width: 16px; height: 16px; }
+        .affiliate-add-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; font-size: 13px; font-weight: 500; color: var(--primary); background: rgba(45, 90, 74, 0.08); border: 1px dashed var(--primary); border-radius: 8px; cursor: pointer; transition: all 0.2s ease; font-family: inherit; }
+        .affiliate-add-btn:hover { background: rgba(45, 90, 74, 0.15); }
+        .affiliate-add-btn svg { width: 14px; height: 14px; }
+
         @media (max-width: 1024px) { .stats-grid, .quick-actions { grid-template-columns: repeat(2, 1fr); } }
         .image-upload input[type="file"] { display: none; }
         .image-upload-area { border: 2px dashed var(--gray-300); border-radius: 12px; padding: 28px; text-align: center; cursor: pointer; transition: all 0.2s ease; display: flex; flex-direction: column; align-items: center; gap: 8px; }
@@ -701,6 +713,15 @@
                         <label>Video URL (optional)</label>
                         <input type="url" id="postVideoUrl" placeholder="https://youtube.com/watch?v=...">
                     </div>
+                    <div class="form-group affiliate-links-section">
+                        <label>Affiliate Links (optional)</label>
+                        <div id="affiliateLinksContainer"></div>
+                        <button type="button" class="affiliate-add-btn" id="addAffiliateLinkBtn" onclick="addAffiliateLinkRow()">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                            Add Affiliate Link
+                        </button>
+                        <p class="form-help">Add up to 5 affiliate links that appear as pills on the post.</p>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('blogModal')">Cancel</button>
@@ -856,6 +877,10 @@
             // Reset image upload if announcement modal
             if (modalId === 'announcementModal') {
                 removeAnnouncementImage();
+            }
+            // Clear affiliate links if blog modal
+            if (modalId === 'blogModal') {
+                clearAffiliateLinks();
             }
         }
 
@@ -1127,6 +1152,54 @@
             }
         }
 
+        // ========== AFFILIATE LINKS ==========
+        function addAffiliateLinkRow(label = '', url = '') {
+            const container = document.getElementById('affiliateLinksContainer');
+            const rows = container.querySelectorAll('.affiliate-link-row');
+            if (rows.length >= 5) {
+                showToast('Maximum 5 affiliate links', 'error');
+                return;
+            }
+            const row = document.createElement('div');
+            row.className = 'affiliate-link-row';
+            row.innerHTML = `
+                <input type="text" class="affiliate-label" placeholder="Link label" value="${label}">
+                <input type="url" class="affiliate-url" placeholder="https://..." value="${url}">
+                <button type="button" class="affiliate-remove-btn" onclick="this.parentElement.remove(); updateAddBtnVisibility()">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            `;
+            container.appendChild(row);
+            updateAddBtnVisibility();
+        }
+
+        function updateAddBtnVisibility() {
+            const container = document.getElementById('affiliateLinksContainer');
+            const btn = document.getElementById('addAffiliateLinkBtn');
+            if (container && btn) {
+                btn.style.display = container.querySelectorAll('.affiliate-link-row').length >= 5 ? 'none' : 'inline-flex';
+            }
+        }
+
+        function getAffiliateLinks() {
+            const container = document.getElementById('affiliateLinksContainer');
+            const links = [];
+            container.querySelectorAll('.affiliate-link-row').forEach(row => {
+                const label = row.querySelector('.affiliate-label').value.trim();
+                const url = row.querySelector('.affiliate-url').value.trim();
+                if (label && url) {
+                    links.push({ label, url });
+                }
+            });
+            return links;
+        }
+
+        function clearAffiliateLinks() {
+            const container = document.getElementById('affiliateLinksContainer');
+            if (container) container.innerHTML = '';
+            updateAddBtnVisibility();
+        }
+
         function editPost(id) {
             const post = WOTCData.posts.getById(id);
             if (post) {
@@ -1136,6 +1209,10 @@
                 document.getElementById('postType').value = post.type;
                 document.getElementById('postContent').value = post.content || '';
                 document.getElementById('postVideoUrl').value = post.videoUrl || '';
+                clearAffiliateLinks();
+                if (post.affiliateLinks && post.affiliateLinks.length > 0) {
+                    post.affiliateLinks.forEach(link => addAffiliateLinkRow(link.label, link.url));
+                }
                 openModal('blogModal');
             }
         }
@@ -1235,6 +1312,7 @@
                 type: document.getElementById('postType').value,
                 content: document.getElementById('postContent').value,
                 videoUrl: document.getElementById('postVideoUrl').value,
+                affiliateLinks: getAffiliateLinks(),
                 visible: true
             };
             if (id) {
@@ -1247,6 +1325,7 @@
             closeModal('blogModal');
             document.getElementById('blogModalTitle').textContent = 'Write Blog Post';
             document.getElementById('postId').value = '';
+            clearAffiliateLinks();
             renderAll();
         });
 
