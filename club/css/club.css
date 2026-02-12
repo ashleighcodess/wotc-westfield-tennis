@@ -1591,6 +1591,9 @@ footer {
     .page-header {
         padding: 40px 0;
     }
+
+    .map-embed { height: 280px; }
+    .hero p { font-size: 16px; }
 }
 
 @media (max-width: 480px) {
@@ -1605,4 +1608,7 @@ footer {
     .pricing-grid {
         grid-template-columns: 1fr;
     }
+
+    section { padding: 40px 0; }
+    .footer-social a { width: 44px; height: 44px; }
 }
