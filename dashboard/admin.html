@@ -652,6 +652,22 @@
                         <textarea id="eventDescription" placeholder="Tell members about this event..."></textarea>
                     </div>
                     <div class="form-group">
+                        <label>Image (optional)</label>
+                        <div class="image-upload">
+                            <input type="file" id="eventImage" accept="image/*" onchange="ImageUpload.preview('event', this)">
+                            <div class="image-upload-area" id="eventImageArea" onclick="document.getElementById('eventImage').click()">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:32px;height:32px;color:var(--gray-400)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                <span>Click to upload or take a photo</span>
+                                <span style="font-size:12px;color:var(--gray-400)">Photos are auto-compressed</span>
+                            </div>
+                            <div class="image-preview" id="eventImagePreview" style="display:none">
+                                <img id="eventImagePreviewImg" src="" alt="Preview">
+                                <button type="button" class="image-remove" onclick="ImageUpload.remove('event')">&times;</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="eventImageData">
+                    </div>
+                    <div class="form-group">
                         <label>Stripe Payment Link</label>
                         <input type="url" id="eventStripeLink" placeholder="https://buy.stripe.com/...">
                         <p class="form-help">Paste your Stripe payment link for paid events</p>
@@ -711,6 +727,22 @@
                         <textarea id="programDescription" placeholder="Describe what participants will learn..."></textarea>
                     </div>
                     <div class="form-group">
+                        <label>Image (optional)</label>
+                        <div class="image-upload">
+                            <input type="file" id="programImage" accept="image/*" onchange="ImageUpload.preview('program', this)">
+                            <div class="image-upload-area" id="programImageArea" onclick="document.getElementById('programImage').click()">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:32px;height:32px;color:var(--gray-400)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                <span>Click to upload or take a photo</span>
+                                <span style="font-size:12px;color:var(--gray-400)">Photos are auto-compressed</span>
+                            </div>
+                            <div class="image-preview" id="programImagePreview" style="display:none">
+                                <img id="programImagePreviewImg" src="" alt="Preview">
+                                <button type="button" class="image-remove" onclick="ImageUpload.remove('program')">&times;</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="programImageData">
+                    </div>
+                    <div class="form-group">
                         <label>Stripe Payment Link</label>
                         <input type="url" id="programStripeLink" placeholder="https://buy.stripe.com/...">
                     </div>
@@ -750,6 +782,22 @@
                     <div class="form-group">
                         <label>Content *</label>
                         <textarea id="postContent" rows="6" placeholder="Write your post here..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Image (optional)</label>
+                        <div class="image-upload">
+                            <input type="file" id="postImage" accept="image/*" onchange="ImageUpload.preview('post', this)">
+                            <div class="image-upload-area" id="postImageArea" onclick="document.getElementById('postImage').click()">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:32px;height:32px;color:var(--gray-400)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                <span>Click to upload or take a photo</span>
+                                <span style="font-size:12px;color:var(--gray-400)">Photos are auto-compressed</span>
+                            </div>
+                            <div class="image-preview" id="postImagePreview" style="display:none">
+                                <img id="postImagePreviewImg" src="" alt="Preview">
+                                <button type="button" class="image-remove" onclick="ImageUpload.remove('post')">&times;</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="postImageData">
                     </div>
                     <div class="form-group">
                         <label>Video URL (optional)</label>
@@ -796,15 +844,15 @@
                     <div class="form-group">
                         <label>Image (optional)</label>
                         <div class="image-upload" id="announcementImageUpload">
-                            <input type="file" id="announcementImage" accept="image/*" onchange="previewAnnouncementImage(this)">
+                            <input type="file" id="announcementImage" accept="image/*" onchange="ImageUpload.preview('announcement', this)">
                             <div class="image-upload-area" id="announcementImageArea" onclick="document.getElementById('announcementImage').click()">
                                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:32px;height:32px;color:var(--gray-400)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                <span>Click to upload an image</span>
-                                <span style="font-size:12px;color:var(--gray-400)">JPG, PNG up to 2MB</span>
+                                <span>Click to upload or take a photo</span>
+                                <span style="font-size:12px;color:var(--gray-400)">Photos are auto-compressed</span>
                             </div>
                             <div class="image-preview" id="announcementImagePreview" style="display:none">
                                 <img id="announcementImagePreviewImg" src="" alt="Preview">
-                                <button type="button" class="image-remove" onclick="removeAnnouncementImage()">&times;</button>
+                                <button type="button" class="image-remove" onclick="ImageUpload.remove('announcement')">&times;</button>
                             </div>
                         </div>
                         <input type="hidden" id="announcementImageData">
@@ -851,6 +899,22 @@
                     <div class="form-group">
                         <label>Description</label>
                         <textarea id="productDescription" placeholder="Describe the product..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Product Image (optional)</label>
+                        <div class="image-upload">
+                            <input type="file" id="productImage" accept="image/*" onchange="ImageUpload.preview('product', this)">
+                            <div class="image-upload-area" id="productImageArea" onclick="document.getElementById('productImage').click()">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:32px;height:32px;color:var(--gray-400)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                <span>Click to upload or take a photo</span>
+                                <span style="font-size:12px;color:var(--gray-400)">Photos are auto-compressed</span>
+                            </div>
+                            <div class="image-preview" id="productImagePreview" style="display:none">
+                                <img id="productImagePreviewImg" src="" alt="Preview">
+                                <button type="button" class="image-remove" onclick="ImageUpload.remove('product')">&times;</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="productImageData">
                     </div>
                     <div class="form-group">
                         <label>Stripe/Affiliate Link</label>
@@ -916,10 +980,9 @@
             // Reset form
             const form = document.querySelector(`#${modalId} form`);
             if (form) form.reset();
-            // Reset image upload if announcement modal
-            if (modalId === 'announcementModal') {
-                removeAnnouncementImage();
-            }
+            // Reset image uploads
+            const prefixMap = { eventModal: 'event', programModal: 'program', blogModal: 'post', announcementModal: 'announcement', productModal: 'product' };
+            if (prefixMap[modalId]) ImageUpload.remove(prefixMap[modalId]);
             // Clear affiliate links if blog modal
             if (modalId === 'blogModal') {
                 clearAffiliateLinks();
@@ -1110,31 +1173,66 @@
             document.getElementById('statPosts').textContent = stats.totalPosts;
         }
 
-        // ========== ANNOUNCEMENT IMAGE HELPERS ==========
-        function previewAnnouncementImage(input) {
-            const file = input.files[0];
-            if (!file) return;
-            if (file.size > 2 * 1024 * 1024) {
-                showToast('Image must be under 2MB', 'error');
-                input.value = '';
-                return;
-            }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('announcementImageData').value = e.target.result;
-                document.getElementById('announcementImagePreviewImg').src = e.target.result;
-                document.getElementById('announcementImagePreview').style.display = 'inline-block';
-                document.getElementById('announcementImageArea').style.display = 'none';
-            };
-            reader.readAsDataURL(file);
-        }
+        // ========== IMAGE UPLOAD UTILITY (with auto-compression) ==========
+        const ImageUpload = {
+            maxWidth: 1200,
+            quality: 0.8,
 
-        function removeAnnouncementImage() {
-            document.getElementById('announcementImageData').value = '';
-            document.getElementById('announcementImage').value = '';
-            document.getElementById('announcementImagePreview').style.display = 'none';
-            document.getElementById('announcementImageArea').style.display = 'flex';
-        }
+            compress(file) {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        let w = img.width, h = img.height;
+                        if (w > ImageUpload.maxWidth) {
+                            h = Math.round(h * ImageUpload.maxWidth / w);
+                            w = ImageUpload.maxWidth;
+                        }
+                        canvas.width = w;
+                        canvas.height = h;
+                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        resolve(canvas.toDataURL('image/jpeg', ImageUpload.quality));
+                    };
+                    img.src = URL.createObjectURL(file);
+                });
+            },
+
+            async preview(prefix, input) {
+                const file = input.files[0];
+                if (!file) return;
+                const area = document.getElementById(prefix + 'ImageArea');
+                area.innerHTML = '<span style="color:var(--gray-400)">Compressing...</span>';
+                try {
+                    const dataUrl = await ImageUpload.compress(file);
+                    document.getElementById(prefix + 'ImageData').value = dataUrl;
+                    document.getElementById(prefix + 'ImagePreviewImg').src = dataUrl;
+                    document.getElementById(prefix + 'ImagePreview').style.display = 'inline-block';
+                    area.style.display = 'none';
+                } catch (err) {
+                    showToast('Failed to process image', 'error');
+                    input.value = '';
+                }
+                area.innerHTML = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:32px;height:32px;color:var(--gray-400)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span>Click to upload or take a photo</span><span style="font-size:12px;color:var(--gray-400)">Photos are auto-compressed</span>';
+            },
+
+            remove(prefix) {
+                document.getElementById(prefix + 'ImageData').value = '';
+                document.getElementById(prefix + 'Image').value = '';
+                document.getElementById(prefix + 'ImagePreview').style.display = 'none';
+                document.getElementById(prefix + 'ImageArea').style.display = 'flex';
+            },
+
+            populate(prefix, dataUrl) {
+                if (dataUrl) {
+                    document.getElementById(prefix + 'ImageData').value = dataUrl;
+                    document.getElementById(prefix + 'ImagePreviewImg').src = dataUrl;
+                    document.getElementById(prefix + 'ImagePreview').style.display = 'inline-block';
+                    document.getElementById(prefix + 'ImageArea').style.display = 'none';
+                } else {
+                    ImageUpload.remove(prefix);
+                }
+            }
+        };
 
         function renderAll() {
             renderEvents();
@@ -1174,6 +1272,7 @@
                 document.getElementById('eventPrice').value = event.price || '';
                 document.getElementById('eventDescription').value = event.description || '';
                 document.getElementById('eventStripeLink').value = event.stripeLink || '';
+                ImageUpload.populate('event', event.image);
                 openModal('eventModal');
             }
         }
@@ -1190,6 +1289,7 @@
                 document.getElementById('programPrice').value = program.price || '';
                 document.getElementById('programDescription').value = program.description || '';
                 document.getElementById('programStripeLink').value = program.stripeLink || '';
+                ImageUpload.populate('program', program.image);
                 openModal('programModal');
             }
         }
@@ -1251,6 +1351,7 @@
                 document.getElementById('postType').value = post.type;
                 document.getElementById('postContent').value = post.content || '';
                 document.getElementById('postVideoUrl').value = post.videoUrl || '';
+                ImageUpload.populate('post', post.image);
                 clearAffiliateLinks();
                 if (post.affiliateLinks && post.affiliateLinks.length > 0) {
                     post.affiliateLinks.forEach(link => addAffiliateLinkRow(link.label, link.url));
@@ -1266,14 +1367,7 @@
                 document.getElementById('announcementId').value = ann.id;
                 document.getElementById('announcementTitle').value = ann.title;
                 document.getElementById('announcementContent').value = ann.content || '';
-                if (ann.image) {
-                    document.getElementById('announcementImageData').value = ann.image;
-                    document.getElementById('announcementImagePreviewImg').src = ann.image;
-                    document.getElementById('announcementImagePreview').style.display = 'inline-block';
-                    document.getElementById('announcementImageArea').style.display = 'none';
-                } else {
-                    removeAnnouncementImage();
-                }
+                ImageUpload.populate('announcement', ann.image);
                 openModal('announcementModal');
             }
         }
@@ -1288,6 +1382,7 @@
                 document.getElementById('productCategory').value = product.category;
                 document.getElementById('productDescription').value = product.description || '';
                 document.getElementById('productStripeLink').value = product.stripeLink || '';
+                ImageUpload.populate('product', product.image);
                 openModal('productModal');
             }
         }
@@ -1303,6 +1398,7 @@
                 category: document.getElementById('eventCategory').value,
                 price: parseFloat(document.getElementById('eventPrice').value) || 0,
                 description: document.getElementById('eventDescription').value,
+                image: document.getElementById('eventImageData').value || '',
                 stripeLink: document.getElementById('eventStripeLink').value,
                 visible: true
             };
@@ -1330,6 +1426,7 @@
                 price: parseFloat(document.getElementById('programPrice').value) || 0,
                 priceType: 'per session',
                 description: document.getElementById('programDescription').value,
+                image: document.getElementById('programImageData').value || '',
                 stripeLink: document.getElementById('programStripeLink').value,
                 visible: true
             };
@@ -1353,6 +1450,7 @@
                 title: document.getElementById('postTitle').value,
                 type: document.getElementById('postType').value,
                 content: document.getElementById('postContent').value,
+                image: document.getElementById('postImageData').value || '',
                 videoUrl: document.getElementById('postVideoUrl').value,
                 affiliateLinks: getAffiliateLinks(),
                 visible: true
@@ -1401,6 +1499,7 @@
                 price: parseFloat(document.getElementById('productPrice').value) || 0,
                 category: document.getElementById('productCategory').value,
                 description: document.getElementById('productDescription').value,
+                image: document.getElementById('productImageData').value || '',
                 stripeLink: document.getElementById('productStripeLink').value,
                 visible: true
             };
